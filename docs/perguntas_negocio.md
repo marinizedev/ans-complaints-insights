@@ -49,7 +49,7 @@ Entender o comportamento das reclamações dos beneficiários de planos de saúd
 
 15. O IGR apresenta tendência de crescimento ou redução ao longo dos anos?
 16. Quais operadoras possuem os maiores IGRs históricos?
-17. Existem relação entre porte da operadora e IGR?
+17. Existe relação entre porte da operadora e IGR?
 
 ---
 
