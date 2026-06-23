@@ -22,12 +22,6 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 # Caminho do arquivo
 arquivo = BASE_DIR / "data" / "raw" / "igr.csv"
 
-print("BASE_DIR:")
-print(BASE_DIR)
-
-print("\nARQUIVO:")
-print(arquivo)
-
 df = pd.read_csv(
     arquivo, 
     sep=";",
