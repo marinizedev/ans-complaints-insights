@@ -10,6 +10,7 @@
 
 import pandas as pd
 from pathlib import Path
+from datetime import datetime
 
 # ==================================================================
 # 1. CARREGAR O ARQUIVO
@@ -64,7 +65,7 @@ print(df.dtypes)
 # 5. VALORES NULOS
 # ==================================================================
 
-print("VALORES NULOS POR COLUNA")
+print("\nVALORES NULOS POR COLUNA")
 
 nulos = df.isnull().sum()
 
@@ -74,7 +75,8 @@ print(nulos)
 # 6. MEMÓRIA UTILIZADA
 # ==================================================================
 
-print("MEMÓRIA UTILIZADA")
+print("\nMEMÓRIA UTILIZADA")
+
 memoria_mb = (df.memory_usage(deep=True).sum() / 1024**2)
 
 print(f"{memoria_mb:.2f} MB")
@@ -83,47 +85,61 @@ print(f"{memoria_mb:.2f} MB")
 # 7. QUANTIDADE DE OPERADORAS
 # ==================================================================
 
-print("OPERADORAS")
+print("\nOPERADORAS")
 
 qtd_operadoras = df["REGISTRO_ANS"].nunique()
 
 print(f"Operadoras únicas: {qtd_operadoras}")
 
+# =================================================================
+# VARIÁVEIS REUTILIZÁVEIS
+# =================================================================
+
+coberturas = (
+    df["COBERTURA"]
+    .value_counts(dropna=False)
+)
+
+portes = (
+    df["PORTE_OPERADORA"]
+    .value_counts(dropna=False)
+)
+
+periodo = sorted(
+    df["COMPETENCIA"]
+    .dropna()
+    .unique()
+)
+
 # ==================================================================
 # 8. COBERTURAS EXISTENTES
 # ==================================================================
 
-print("TIPOS DE COBERTURA")
+print("\nTIPOS DE COBERTURA")
 
-print(df["COBERTURA"].value_counts(dropna=False))
+print(coberturas)
 
 # ==================================================================
 # 9. PORTE DAS OPERADORAS
 # ==================================================================
 
-print("PORTE DAS OPERADORAS")
+print("\nPORTE DAS OPERADORAS")
 
-print(df["PORTE_OPERADORA"].value_counts(dropna=False))
+print(portes)
 
 # ==================================================================
 # 10. COMPETÊNCIA
 # ==================================================================
 
-print("PERÍODO COBERTO")
+print("\nPERÍODO COBERTO")
 
-print(
-    sorted(
-        df["COMPETENCIA"]
-        .dropna()
-        .unique()
-    )
-)
+print(periodo)
 
 # ==================================================================
 # 11. AMOSTRA DOS DADOS
 # ==================================================================
 
-print("PRIMEIROS REGISTROS")
+print("\nPRIMEIROS REGISTROS")
 
 print(df.head())
 
@@ -131,10 +147,83 @@ print(df.head())
 # 12. ESTATÍSTICAS BÁSICAS
 # ==================================================================
 
-print("ESTATÍSTICAS NUMÉRICAS")
+print("\nESTATÍSTICAS NUMÉRICAS")
 
 print(df.describe())
 
 print("\n==============================")
 print("DATA UNDERSTANDING FINALIZADO")
 print("==============================")
+
+# ==================================================================
+# 13. GERAR RELATÓRIO AUTOMÁTICO
+# ==================================================================
+
+print("\nGerando relatório automático...")
+
+data_execucao = datetime.now()
+
+relatorio_path = (
+    BASE_DIR
+    / "docs"
+    / "data_understanding_report.md"
+)
+
+relatorio = f"""
+# Data Understanding Report
+
+Gerado em: {data_execucao}
+
+---
+
+## Arquivo Analisado
+
+{arquivo.name}
+
+---
+
+## Estrutura
+
+- Registros: {linhas:,}
+- Colunas: {colunas}
+- Operadoras únicas: {qtd_operadoras}
+
+---
+
+## Memória
+
+- Consumo: {memoria_mb:.2f} MB
+
+---
+
+## Coberturas
+
+{coberturas.to_markdown()}
+
+---
+
+## Porte das Operadoras
+
+{portes.to_markdown()}
+
+---
+
+## Valores Nulos
+
+{nulos.to_frame(name="Quantidade").to_markdown()}
+
+---
+
+## Período Coberto
+
+{periodo}
+"""
+
+with open(
+    relatorio_path,
+    "w",
+    encoding="utf-8"
+) as arquivo_md:
+    arquivo_md.write(relatorio)
+
+print(f"\nRelatório gerado com sucesso:\n{relatorio_path}")
