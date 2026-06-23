@@ -2,73 +2,15 @@
 
 ## Objetivo
 
-Realizar o entendimento inicial da base de dados antes de qualquer tratamento, transformação ou análise exploratória.
+Realizar o entendimento inicial da base antes das análises exploratórias e identificar possíveis inconsistências, oportunidades analíticas e hipóteses de investigação.
 
 ---
 
-## Resumo da Base
+## Contexto
 
-- Linhas: 151.501
-- Colunas: 10
-- Operadoras únicas: 1.411
-- Coberturas: 2 categorias
-- Período coberto: 2015 a 2026
+O dataset disponibilizado pela ANS contém informações relacionadas ao Índice Geral de Reclamações (IGR) das operadoras de planos de saúde brasileiras.
 
----
-
-## Colunas Disponíveis
-
-- REGISTRO_ANS
-- RAZAO_SOCIAL
-- COBERTURA
-- IGR
-- QTD_RECLAMACOES
-- QTD_BENEFICIARIO
-- PORTE_OPERADORA
-- COMPETENCIA
-- COMPETENCIA_BENEFICIARIO
-- DT_ATUALIZACAO
-
----
-
-## Qualidade dos Dados
-
-### Valores Nulos
-
-Apenas uma coluna apresenta valores nulos:
-
-| Coluna          | Valores nulos |
-|-----------------|---------------|
-| DT_ATUALIZACAO  | 62.119        |
-
-Observação:
-
-O próprio dicionário da ANS informa que campos sem data indicam bases congeladas ou não atualizadas.
-
-Portanto, os valores nulos aparentam ser esperados.
-
----
-
-## Distribuição por Cobertura
-
-| Cobertura                   | Quantidade |
-|-----------------------------|------------|
-| Assistência médica          | 100.352    |
-| Exclusivamente odontológica | 51.149     |
-
----
-
-## Distribuição por Porte
-
-| Porte   | Quantidade |
-|---------|------------|
-| Pequeno | 96.391     |
-| Médio   | 40.120     |
-| Grande  | 14.990     |
-
-Observação:
-
-A maior parte dos registros pertence a operadoras de pequeno porte.
+A base reúne informações de reclamações, beneficiários, cobertura e porte das operadoras.
 
 ---
 
@@ -76,32 +18,55 @@ A maior parte dos registros pertence a operadoras de pequeno porte.
 
 ### Competência
 
-Apesar de o dicionário informar que COMPETENCIA e COMPETENCIA_BENEFICIARIO representam mês/ano, os dados disponíveis apresentam apenas o ano.
+O dicionário da ANS informa que:
 
-Valores encontrados:
+- COMPETENCIA
+- COMPETENCIA_BENEFICIARIO
 
-2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 e 2026.
+representa mês e ano de referência.
 
-Essa inconsistência deve ser registrada para futuras análises.
+Entretanto, os dados disponibilizados apresentam apenas o ano.
+
+Exemplo:
+
+2015, 2016, 2017...
+
+Essa inconsistência foi registrada para futuras validações.
 
 ---
 
-## IGR
+### DT_ATUALIZACAO
 
-A coluna IGR foi carregada como texto.
+O dicionário da ANS informa que registros sem data podem indicar bases congeladas.
 
-Será necessário investigar:
+Portanto, a existência de valores ausentes nessa coluna aparenta ser esperada.
+
+---
+
+### IGR
+
+Durante a carga inicial dos dados, a coluna IGR foi identificada como texto.
+
+Foi necessária investigação para investigar:
 
 - separador decimal utilizado;
-- possibilidade de conversão para numérico;
-- existência de valores inválidos.
+- formato dos valores;
+- necessidade de conversão para tipo numérico.
+
+---
+
+## Hipóteses Iniciais
+
+- Operadoras de pequeno porte podem apresentar comportamento diferente das grandes operadoras.
+- Assistência médica pode apresentar volume de reclamações superior à odontológica.
+- O crescimento das reclamações pode não acompanhar o crescimento dos beneficiários.
+- Existem operadoras que podem concentrar parte relevante das reclamações do setor.
 
 ---
 
 ## Próximos Passos
 
-1. Investigar a coluna IGR.
-2. Validar possíveis duplicidades.
-3. Identificar evolução temporal das reclamações.
-4. Construir perguntas de negócio.
-5. Iniciar análise exploratória.
+1. Explorar comportamento temporal das reclamações.
+2. Avaliar distribuição do IGR.
+3. Investigar operadoras com maiores índices.
+4. Construir análises para responder às perguntas de negócio.
