@@ -1,21 +1,26 @@
-# Insights Iniciais
+# Insights — ANS Complaints Insights
+
+> Todos os valores de IGR foram calculados pelo método correto:
+> ponderação pela carteira de beneficiários.
+> Para entender a metodologia adotada, consultar `investigacao_inicial.md`.
+
+---
 
 ## Estrutura do Dataset
 
 - Total de registros: 151.501
 - Total de colunas: 10
 - Total de operadoras únicas: 1.411
+- Período coberto: 2015 a 2026 (2026 parcial)
 
 ---
 
 ## Cobertura dos Planos
 
 | Cobertura                   | Registros |
-| --------------------------- | --------- |
+|-----------------------------|-----------|
 | Assistência médica          | 100.352   |
 | Exclusivamente odontológica | 51.149    |
-
-Observação:
 
 A maior parte dos registros está relacionada à assistência médica.
 
@@ -24,24 +29,22 @@ A maior parte dos registros está relacionada à assistência médica.
 ## Porte das Operadoras
 
 | Porte   | Registros |
-| ------- | --------- |
+|---------|-----------|
 | Pequeno | 96.391    |
 | Médio   | 40.120    |
 | Grande  | 14.990    |
 
-Observação:
-
-As operadoras de Pequeno Porte representam a maior parte da base.
+As operadoras de pequeno porte representam a maior parte dos registros
+na base — mas não das reclamações (ver Insight 02).
 
 ---
 
 ## Período Coberto
 
-2015 até 2026
-
-Observação:
+2015 a 2026.
 
 A base cobre mais de 10 anos de histórico.
+O ano de 2026 é parcial e deve ser interpretado com cautela.
 
 ---
 
@@ -62,12 +65,11 @@ A base cobre mais de 10 anos de histórico.
 ### Colunas com valores nulos
 
 | Coluna         | Valores nulos |
-| -------------- | ------------- |
+|----------------|---------------|
 | dt_atualizacao | 62.119        |
 
-Observação:
-
-Segundo a documentação da ANS, valores ausentes podem indicar bases congeladas.
+Segundo a documentação da ANS, valores ausentes indicam bases congeladas.
+A ausência é esperada e não representa problema de qualidade.
 
 ---
 
@@ -78,125 +80,167 @@ Durante a etapa de preparação:
 - padronização dos nomes das colunas para minúsculo;
 - conversão da coluna igr para float;
 - conversão da coluna dt_atualizacao para datetime;
-- geração do arquivo processado em data/processed.
-
----
+- conversão das colunas numéricas com `pd.to_numeric`;
+- geração do arquivo processado em `data/processed`.
 
 ### Impacto do processamento
-
-Consumo de memória:
 
 | Etapa  | Memória  |
 |--------|----------|
 | Antes  | 24,16 MB |
 | Depois | 11,60 MB |
 
-Observação:
-
-A padronização dos tipos reduziu significativamente o consumo de memória do dataset.
+A padronização dos tipos reduziu significativamente o consumo de memória.
 
 ---
 
-## Insight 1 — Crescimento proporcional das reclamações
+## Insight 01 — Crescimento das reclamações supera o crescimento de beneficiários
 
-Entre 2015 e 2024 a taxa de reclamações por mil beneficiários aumentou de 0,107 para 0,352.
+Entre 2015 e 2024, a taxa de reclamações por mil beneficiários
+(IGR correto) aumentou de **0,107 para 0,352**.
 
-Isso representa um crescimento superior a 3 vezes na frequência de reclamações.
+Isso representa crescimento superior a **3 vezes** na frequência de
+reclamações, enquanto a base de beneficiários cresceu aproximadamente
+**21%** no mesmo período.
 
-O aumento das reclamações não pode ser explicado apenas pelo crescimento da quantidade de beneficiários.
+O crescimento das reclamações não pode ser explicado pelo aumento
+da base de beneficiários — há deterioração real na relação entre
+operadoras e beneficiários.
 
 ---
 
-## Insight 02 — Operadoras de grande porte concentram a maior taxa de reclamações
+## Insight 02 — Grande porte concentra reclamações de forma desproporcional
 
-Após normalização pela quantidade de beneficiários:
+O grande porte representa apenas **9,89% dos registros** na base,
+mas concentra **82,54% de todas as reclamações**.
 
-| Porte   | Reclamações por mil beneficiários |
-| ------- | --------------------------------- |
-| Grande  | 0,223                             |
-| Médio   | 0,159                             |
-| Pequeno | 0,134                             |
+| Porte   | % dos registros | % das reclamações | Razão de concentração |
+|---------|-----------------|-------------------|-----------------------|
+| Grande  | 9,89%           | 82,54%            | **8,35×**             |
+| Médio   | 26,48%          | 13,67%            | 0,52×                 |
+| Pequeno | 63,62%          | 3,79%             | 0,06×                 |
 
-Mesmo considerando o tamanho das carteiras, operadoras de grande porte apresentam maior frequência de reclamações.
+O IGR correto por porte confirma:
 
-Isso sugere que fatores operacionais e de experiência do cliente podem exercer influência relevante sobre o volume de reclamações registradas.
+| Porte   | IGR correto |
+|---------|-------------|
+| Grande  | 0,223       |
+| Médio   | 0,159       |
+| Pequeno | 0,134       |
 
-Observação:
-
-Durante a análise foi identificado que algumas operadoras apresentavam taxas extremamente elevadas de reclamação.
-
-Ao investigar os dados, verificou-se que essas operadoras possuíam bases muito pequenas de beneficiários (menos de 1.000 usuários), o que distorcia os resultados.
-
-Por esse motivo foi aplicado um filtro mínimo de beneficiários para identificar operadoras com relevância estatística.
+Operadoras de grande porte apresentam maior frequência relativa de
+reclamações mesmo após normalização pela carteira.
 
 ---
 
 ## Insight 03 — O tamanho da operadora não explica sozinho o volume de reclamações
 
-A análise revelou correlação moderada (0,54) entre quantidade de beneficiários e quantidade de reclamações.
+Correlação entre quantidade de beneficiários e quantidade de reclamações:
+**0,54** (moderada).
 
-Isso indica que operadoras maiores tendem a receber mais reclamações, porém o tamanho da carteira não é suficiente para explicar completamente o comportamento observado.
+Entre as 10 maiores operadoras por beneficiários, o comportamento
+frente ao mercado (IGR de mercado 2015–2025: **0,2016**) é bastante
+heterogêneo:
 
-Casos como a Odontoprev demonstram que é possível possuir uma das maiores bases de beneficiários do mercado e, ainda assim, apresentar volume relativamente reduzido de reclamações.
+| Operadora               | IGR correto | vs mercado           |
+|-------------------------|-------------|----------------------|
+| Odontoprev              | 0,013       | 0,07× — muito abaixo |
+| Hapvida                 | 0,184       | 0,91× — abaixo       |
+| Amil                    | 0,290       | 1,44× — acima        |
+| Notre Dame Intermédica  | 0,334       | 1,66× — acima        |
+| Bradesco Saúde          | 0,437       | **2,17× — acima**    |
+| Sul América             | 0,342       | 1,70× — acima        |
+| Unimed Nacional         | 0,425       | **2,11× — acima**    |
+| Porto Seguro            | 0,141       | 0,70× — abaixo       |
 
-O resultado sugere que fatores relacionados à qualidade operacional, atendimento ao cliente, gestão de processos e experiência do beneficiário podem exercer influência relevante sobre o número de reclamações registradas.
-
--- Correlação observada: 0,54
-
----
-
-## Insight 04 — Operadoras em falência ou liquidação concentram volumes expressivos de reclamações
-
-A análise identificou 68 operadoras com indícios de falência, liquidação ou insolvência presentes na razão social.
-
-Mesmo representando uma parcela pequena do mercado, essas operadoras acumulam milhares de reclamações ao longo do período analisado.
-
-Casos como Vision Med, Agemed, Unimed Paulistana e Viva Planos demonstram que operadoras em situação financeira crítica continuam registrando volumes relevantes de reclamações mesmo após processos de liquidação ou encerramento das atividades.
-
-O resultado sugere que dificuldades financeiras podem impactar diretamente a experiência dos beneficiários, aumentando conflitos relacionados a atendimento, cobertura e continuidade dos serviços.
-
-Esse comportamento merece investigação específica ao longo do projeto.
+Carteiras semelhantes, comportamentos completamente distintos.
+Fatores operacionais e de atendimento exercem papel relevante.
 
 ---
 
-## Insight 05 — Reclamações cresceram mais rápido que a base de beneficiários
+## Insight 04 — Assistência médica concentra praticamente todas as reclamações
 
-Entre 2015 e 2024:
+| Cobertura          | Reclamações | Participação | IGR correto |
+|--------------------|-------------|--------------|-------------|
+| Assistência médica | 2.112.387   | 98,07%       | 0,313       |
+| Odontológica       | 41.635      | 1,93%        | 0,011       |
 
-- Beneficiários cresceram de aproximadamente 845 milhões para mais de 1 bilhão.
-- Reclamações cresceram de 90 mil para mais de 359 mil.
+A diferença no IGR correto entre os dois tipos de cobertura é de
+**27 vezes**.
 
-O crescimento das reclamações ocorreu em ritmo significativamente superior ao crescimento da quantidade de beneficiários.
-
-Isso sugere deterioração relativa da experiência dos usuários ou aumento da propensão de registrar reclamações junto à ANS.
-
----
-
-## Insight 06 — Assistência médica concentra praticamente todas as reclamações
-
-Participação das reclamações:
-
-| Cobertura          | Participação |
-| ------------------ | ------------ |
-| Assistência médica | 98,07%       |
-| Odontológica       | 1,93%        |
-
-Quase todas as reclamações registradas na base estão relacionadas aos planos médicos.
-
-Isso sugere que os principais problemas percebidos pelos beneficiários estão concentrados em serviços médicos e hospitalares.
+A dominância da assistência médica se manteve estável ao longo de
+todo o período analisado, variando entre 96,51% e 98,72%.
 
 ---
 
-## Insight 07 — Algumas operadoras em liquidação continuam acumulando reclamações relevantes
+## Insight 05 — Operadoras em falência ou liquidação concentram volumes expressivos de reclamações
 
-Mesmo após processos de falência, liquidação ou insolvência, diversas operadoras continuam apresentando volumes expressivos de reclamações.
+68 operadoras identificadas com indícios de falência, liquidação ou
+insolvência na razão social.
 
-Exemplos:
+Mesmo representando parcela pequena do mercado, acumulam mais de
+3.000 registros e figuram consistentemente entre as maiores taxas
+de reclamação após aplicação do filtro mínimo de beneficiários:
 
-- Vision Med
-- Agemed
-- Unimed Paulistana
-- Viva Planos
-- Saúde Sim
+| Operadora               | IGR correto |
+|-------------------------|-------------|
+| Viva Planos (MF)        | 12,858      |
+| Medical Brasil (MF)     | 10,549      |
+| Minas Center Med (MF)   | 9,578       |
+| Salutar (MF)            | 7,902       |
+| SOSaúde (MF)            | 4,983       |
 
-O comportamento sugere que dificuldades financeiras podem impactar diretamente a qualidade do atendimento e a continuidade dos serviços prestados.
+Dificuldades financeiras impactam diretamente a experiência dos
+beneficiários.
+
+---
+
+## Insight 06 — Prevent Senior se destaca negativamente entre operadoras ativas
+
+A Prevent Senior Corporate apresenta o maior IGR correto entre
+operadoras ativas (não em processo de falência ou liquidação):
+**13,213** — mais de **65 vezes** o IGR de mercado.
+
+Comportamento completamente distinto das demais operadoras de
+grande porte, que apresentam IGR entre 0,13 e 0,44.
+
+---
+
+## Insight 07 — Em 2026, o porte médio superou o grande pela primeira vez
+
+Evolução do IGR correto por porte nos últimos anos:
+
+| Ano  | Grande | Médio     | Pequeno |
+|------|--------|-----------|---------|
+| 2022 | 0,247  | 0,184     | 0,183   |
+| 2023 | 0,364  | 0,265     | 0,184   |
+| 2024 | 0,370  | 0,293     | 0,240   |
+| 2025 | 0,311  | 0,271     | 0,221   |
+| 2026 | 0,319  | **0,358** | 0,234   |
+
+Em 2026, pela primeira vez na série histórica, o porte médio ultrapassou
+o grande porte em frequência relativa de reclamações.
+
+> ⚠️ 2026 é ano parcial. Essa inversão requer acompanhamento ao longo
+> do ano para confirmação da tendência.
+
+---
+
+## Insight 08 — IGR apresenta tendência de crescimento consistente
+
+| Ano  | IGR correto  |
+|------|--------------|
+| 2015 | 0,107        |
+| 2016 | 0,096        |
+| 2017 | 0,098        |
+| 2018 | 0,107        |
+| 2019 | 0,145        |
+| 2020 | 0,160        |
+| 2021 | 0,195        |
+| 2022 | 0,233        |
+| 2023 | 0,340        |
+| 2024 | 0,352        |
+| 2025 | 0,301        |
+| 2026 | 0,320 ⚠️    |
+
+O crescimento é consistente de 2016 a 2024, com leve recuo em 2025.
