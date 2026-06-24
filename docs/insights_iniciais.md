@@ -244,3 +244,44 @@ o grande porte em frequência relativa de reclamações.
 | 2026 | 0,320 ⚠️    |
 
 O crescimento é consistente de 2016 a 2024, com leve recuo em 2025.
+
+---
+
+## Insight 09 — A pandemia de 2020 marca o ponto de inflexão das reclamações
+
+Antes de 2020, o crescimento do IGR era lento e relativamente estável:
+
+| Ano  | IGR correto | Reclamações | Variação anual |
+|------|-------------|-------------|----------------|
+| 2015 | 0,107       | 90.783      | —              |
+| 2016 | 0,096       | 79.371      | -12,6%         |
+| 2017 | 0,098       | 81.362      | +2,5%          |
+| 2018 | 0,107       | 89.877      | +10,5%         |
+| 2019 | 0,145       | 124.557     | +38,6%         |
+
+A partir de 2020, o ritmo muda estruturalmente:
+
+| Ano  | IGR correto | Reclamações | Variação anual |
+|------|-------------|-------------|----------------|
+| 2020 | 0,160       | 139.635     | +12,1%         |
+| 2021 | 0,195       | 177.061     | +26,8%         |
+| 2022 | 0,233       | 220.898     | +24,8%         |
+| 2023 | 0,340       | 333.875     | +51,1%         |
+| 2024 | 0,352       | 359.162     | +7,6%          |
+
+O crescimento não volta ao ritmo anterior após a pandemia.
+O sistema de saúde suplementar parece ter saído estruturalmente
+fragilizado do período.
+
+### Hipóteses associadas
+
+- Operadoras reduziram coberturas durante a crise e os conflitos
+  com beneficiários se intensificaram nos anos seguintes.
+- A sobrecarga operacional do período pandêmico pode ter degradado
+  a qualidade do atendimento de forma duradoura.
+- O caso da Prevent Senior — maior IGR entre operadoras ativas —
+  pode ter relação direta com condutas adotadas durante a pandemia.
+
+> Este insight merece destaque visual no dashboard como marco
+> narrativo da série histórica: um ponto de corte claro entre
+> o comportamento anterior e posterior a 2020.

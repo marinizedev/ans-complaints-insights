@@ -181,3 +181,39 @@ superior ao grande porte.
 > ⚠️ 2026 é ano parcial. A hipótese não pode ser confirmada ou refutada
 > com os dados disponíveis até o momento. Requer acompanhamento ao
 > longo do ano para validação.
+
+---
+
+## H9 — A pandemia de 2020 foi o ponto de inflexão estrutural das reclamações
+
+**Status: 🔍 Em investigação**
+
+### Evidências iniciais
+
+Antes de 2020, a variação anual das reclamações era irregular e
+contida. A partir de 2020, o crescimento se torna consistente e
+acelerado, sem retorno ao ritmo anterior:
+
+| Período       | Comportamento                          |
+|---------------|----------------------------------------|
+| 2015 – 2019   | Crescimento lento, com recuo em 2016   |
+| 2020          | Aceleração — ponto de inflexão         |
+| 2021 – 2023   | Crescimento consistente e acelerado    |
+| 2024 – 2025   | Leve desaceleração, mas nível elevado  |
+
+### O que precisa ser investigado
+
+- Se a aceleração está concentrada em operadoras específicas
+  ou distribuída por todo o mercado.
+- Se o comportamento da Prevent Senior — maior IGR entre
+  operadoras ativas — tem relação com condutas adotadas
+  durante a pandemia.
+- Se operadoras que reduziram coberturas em 2020 apresentam
+  crescimento de reclamações mais acentuado nos anos seguintes.
+
+### Por que não está confirmada ainda
+
+Os dados disponíveis mostram correlação temporal com a pandemia,
+mas não permitem estabelecer causalidade. A investigação requer
+análise mais granular por operadora e por tipo de reclamação,
+dados que podem não estar disponíveis neste dataset.
