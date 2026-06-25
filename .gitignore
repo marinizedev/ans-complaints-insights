@@ -1,13 +1,40 @@
-# Python
-__pycache__/
-*.pyc
-
-# Virtual environment
+# ==========================================
+# AMBIENTE VIRTUAL E DEPENDÊNCIAS
+# ==========================================
 .venv/
 venv/
+ENV/
+env/
+lib/
+bin/
+include/
 
-# VS Code
+# ==========================================
+# CACHE DO PYTHON E OPERAÇÕES DO STREAMLIT
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.streamlit/config.toml
+.streamlit/secrets.toml
+
+# ==========================================
+# DADOS (Proteção para dados brutos pesados)
+# ==========================================
+data/raw/*
+data/processed/*
+
+# ==========================================
+# IDs DE EDITORES E ARQUIVOS DO SISTEMA
+# ==========================================
 .vscode/
+.idea/
+.DS_Store
+Thumbs.db
 
-# Logs
+# ==========================================
+# LOGS E ARQUIVOS TEMPORÁRIOS
+# ==========================================
 *.log
+*.tmp
