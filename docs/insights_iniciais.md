@@ -88,9 +88,12 @@ Durante a etapa de preparação:
 | Etapa  | Memória  |
 |--------|----------|
 | Antes  | 24,16 MB |
-| Depois | 11,60 MB |
+| Depois | 23,70 MB |
 
-A padronização dos tipos reduziu significativamente o consumo de memória.
+O consumo em memória reflete a conversão da coluna
+`dt_atualizacao` para `datetime64[us]`, preservando
+a fidelidade do formato original da ANS (AAAAMMDD + hora).
+O arquivo CSV em disco ocupa 18,7 MB.
 
 ---
 
