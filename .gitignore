@@ -24,6 +24,7 @@ __pycache__/
 # ==========================================
 data/raw/*
 data/processed/*
+!data/processed/igr_processed.csv
 
 # ==========================================
 # IDs DE EDITORES E ARQUIVOS DO SISTEMA
