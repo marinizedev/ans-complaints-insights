@@ -80,11 +80,11 @@ if __name__ == "__main__":
     if not RAW_FILE.exists():
         print(f"Erro: Arquivo bruto não encontrado em: {RAW_FILE}")
     else:
-        # Lendo com iso-8859-1 que é o padrão original dos arquivos da ANS
+        
         df_raw = pd.read_csv(
             RAW_FILE,
             sep=";",
-            encoding="iso-8859-1",
+            encoding="utf-8",
             low_memory=False
         )
         print("Arquivo bruto carregado com sucesso!")
