@@ -29,18 +29,18 @@ IGR_MERCADO   = 0.201619
 ANO_PANDEMIA  = 2020
 
 CORES = {
-    "primaria":    "#7c6af7",
-    "perigo":      "#e05c5c",
-    "sucesso":     "#3ecf8e",
-    "atencao":     "#e09a3e",
-    "pre":         "#2a2a4a",
-    "pos":         "#5b4fd4",
-    "neutro":      "#444466",
-    "texto":       "#e8e8e8",
-    "texto_muted": "#888888",
-    "fundo":       "#0f1117",
-    "card":        "#16192a",
-    "borda":       "#2a2a3a",
+    "primaria":    "#2dd4a0",   # teal — cor de identidade
+    "perigo":      "#ff6b6b",   # vermelho coral — alertas
+    "sucesso":     "#2dd4a0",   # teal — métricas positivas
+    "atencao":     "#ffb060",   # âmbar — atenção
+    "pre":         "#1a3028",   # barra pré-pandemia
+    "pos":         "#25b088",   # barra pós-pandemia
+    "neutro":      "#2a4a3a",   # elementos neutros
+    "texto":       "#e0f0ea",
+    "texto_muted": "#4a8a70",
+    "fundo":       "#0a0e14",
+    "card":        "#0f1a16",
+    "borda":       "#1a3028",
 }
 
 # ==================================================================
