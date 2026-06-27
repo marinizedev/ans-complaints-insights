@@ -1,0 +1,31 @@
+name: Pipeline CI/CD Data Storytelling
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Baixar código do repositório
+      uses: actions/checkout@v4
+
+    - name: Configurar o Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+
+    - name: Instalar dependências do projeto
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Executar testes com Pytest
+      run: |
+        # Adiciona a raiz do projeto ao PATH do Python para localizar o app/ e src/
+        export PYTHONPATH="${PYTHONPATH}:."
+        pytest tests/
