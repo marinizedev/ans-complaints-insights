@@ -42,6 +42,23 @@ O projeto percorre todo o ciclo analítico: da coleta e processamento dos dados 
 
 ---
 
+## 📌 O que este projeto entrega
+
+Além da construção do dashboard, o projeto contempla todas as etapas de um fluxo analítico completo:
+
+- entendimento da base de dados;
+- limpeza e padronização;
+- investigação metodológica;
+- análise exploratória (EDA);
+- validação de hipóteses;
+- descoberta de insights;
+- construção de Data Storytelling;
+- disponibilização em produção.
+
+Durante o desenvolvimento foi identificada e corrigida uma inconsistência importante na forma de calcular o IGR médio, garantindo que todas as análises utilizassem a metodologia estatisticamente correta.
+
+---
+
 ## 🖥️ Demonstração
 
 ### Página Inicial
@@ -87,7 +104,15 @@ Pela primeira vez na série, o porte médio (IGR 0,358) superou o grande porte (
 
 ---
 
+## Fluxo Analítico
+
+![fluxo](images/fluxo_analitico.png)
+
 ## ⚠️ Descoberta Metodológica Importante
+
+Durante a EDA surgiu uma inconsistência nos resultados.
+
+Os valores anuais do IGR estavam completamente fora da realidade.
 
 > Esta foi a descoberta técnica mais relevante do projeto e impacta diretamente a confiabilidade de qualquer análise sobre o IGR.
 
