@@ -108,6 +108,8 @@ Pela primeira vez na série, o porte médio (IGR 0,358) superou o grande porte (
 
 ![fluxo](images/fluxo_analitico.png)
 
+---
+
 ## ⚠️ Descoberta Metodológica Importante
 
 Durante a EDA surgiu uma inconsistência nos resultados.
