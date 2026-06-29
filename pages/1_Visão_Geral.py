@@ -116,12 +116,14 @@ st.markdown(
 
 st.markdown(
     insight_box(
-        "A pandemia de 2020 não causou um pico isolado — ela foi o "
-        "<strong>ponto de inflexão</strong>. Antes de 2020, o crescimento "
-        "era lento e irregular. A partir de 2020, as reclamações crescem "
-        "de forma consistente e acelerada, sem retorno ao ritmo anterior. "
-        "Entre 2015 e 2024, o IGR cresceu <strong>+228%</strong> enquanto "
-        "a base de beneficiários cresceu apenas <strong>+21%</strong>."
+        "O IGR cresceu <strong>+228%</strong> entre 2015 e 2024. "
+        "O ponto de inflexão observado nos dados é 2020 — a partir daí, "
+        "a curva muda de inclinação e não retorna ao ritmo anterior. "
+        "O recuo de 2025 (0,301) é o primeiro desde 2016, "
+        "mas o nível permanece <strong>3× acima</strong> do início da série. "
+        "<em>Os dados indicam uma mudança estrutural a partir de 2020, "
+        "possivelmente associada à pandemia. Essa associação é uma hipótese "
+        "analítica — não uma relação causal comprovada.</em>"
     ),
     unsafe_allow_html=True
 )

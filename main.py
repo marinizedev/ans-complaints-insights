@@ -52,6 +52,81 @@ st.markdown(
 
 st.markdown("---")
 
+# ==================================================================
+# MENSAGENS-CHAVE
+# ==================================================================
+
+st.markdown(
+    """
+    <div style="margin-bottom: 8px;">
+    <span style="font-size:12px; color:#2dd4a0; font-weight:700;
+    letter-spacing:0.12em;">O QUE OS DADOS REVELAM</span>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+col_k1, col_k2 = st.columns(2)
+
+with col_k1:
+    st.markdown(
+        """
+        <div style="background:#0f1a16; border:1px solid #1a3028;
+        border-left: 3px solid #ff6b6b; border-radius:10px;
+        padding:16px 20px; margin-bottom:12px;">
+        <div style="font-size:11px; color:#ff6b6b; font-weight:700;
+        letter-spacing:0.08em; margin-bottom:6px;">CRESCIMENTO DESPROPORCIONAL</div>
+        <div style="font-size:15px; color:#f0fff8; font-weight:600;
+        line-height:1.5;">Reclamações cresceram <span style="color:#ff6b6b">
+        296%</span> entre 2015 e 2024, enquanto a base de beneficiários
+        cresceu apenas <span style="color:#2dd4a0">21%</span>.</div>
+        </div>
+
+        <div style="background:#0f1a16; border:1px solid #1a3028;
+        border-left: 3px solid #ff6b6b; border-radius:10px;
+        padding:16px 20px; margin-bottom:12px;">
+        <div style="font-size:11px; color:#ff6b6b; font-weight:700;
+        letter-spacing:0.08em; margin-bottom:6px;">CONCENTRAÇÃO DESPROPORCIONAL</div>
+        <div style="font-size:15px; color:#f0fff8; font-weight:600;
+        line-height:1.5;">Operadoras de grande porte representam
+        <span style="color:#ff6b6b">9,89%</span> dos registros, mas
+        concentram <span style="color:#ff6b6b">82,54%</span>
+        de todas as reclamações.</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col_k2:
+    st.markdown(
+        """
+        <div style="background:#0f1a16; border:1px solid #1a3028;
+        border-left: 3px solid #ffb060; border-radius:10px;
+        padding:16px 20px; margin-bottom:12px;">
+        <div style="font-size:11px; color:#ffb060; font-weight:700;
+        letter-spacing:0.08em; margin-bottom:6px;">PONTO DE INFLEXÃO</div>
+        <div style="font-size:15px; color:#f0fff8; font-weight:600;
+        line-height:1.5;">A pandemia de 2020 marcou uma virada estrutural.
+        O ritmo de crescimento das reclamações nunca voltou ao padrão
+        anterior.</div>
+        </div>
+
+        <div style="background:#0f1a16; border:1px solid #1a3028;
+        border-left: 3px solid #ffb060; border-radius:10px;
+        padding:16px 20px; margin-bottom:12px;">
+        <div style="font-size:11px; color:#ffb060; font-weight:700;
+        letter-spacing:0.08em; margin-bottom:6px;">OUTLIER EXTREMO</div>
+        <div style="font-size:15px; color:#f0fff8; font-weight:600;
+        line-height:1.5;">A Prevent Senior apresenta IGR
+        <span style="color:#ffb060">65×</span> acima do mercado —
+        nenhuma outra operadora ativa chega perto desse número.</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+st.markdown("---")
+
 col1, col2 = st.columns(2)
 
 with col1:

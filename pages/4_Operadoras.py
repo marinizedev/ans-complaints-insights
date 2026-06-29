@@ -112,11 +112,14 @@ with aba1:
 
     st.markdown(
         insight_box(
-            "A <strong>Prevent Senior</strong> lidera com IGR de "
-            "<strong>13,21</strong> — <strong>65×</strong> acima do mercado "
-            "— sendo a única operadora ativa nesse patamar. "
-            "As demais posições do topo são ocupadas por operadoras "
-            "em processo de falência ou liquidação."
+            "O IGR cresceu <strong>+228%</strong> entre 2015 e 2024. "
+            "O ponto de inflexão observado nos dados é 2020 — a partir daí, "
+            "a curva muda de inclinação e não retorna ao ritmo anterior. "
+            "O recuo de 2025 (0,301) é o primeiro desde 2016, "
+            "mas o nível permanece <strong>3× acima</strong> do início da série. "
+            "<em>Os dados indicam uma mudança estrutural a partir de 2020, "
+            "possivelmente associada à pandemia. Essa associação é uma hipótese "
+            "analítica — não uma relação causal comprovada.</em>"
         ),
         unsafe_allow_html=True
     )
@@ -178,9 +181,12 @@ with aba2:
         insight_box(
             "Notre Dame Intermédica, Amil e Bradesco lideram em volume "
             "absoluto — mas a correlação entre tamanho e reclamações é "
-            "apenas moderada (<strong>0,54</strong>). A Odontoprev, maior "
-            "carteira do mercado, tem IGR <strong>15× menor</strong> "
-            "que a média."
+            "apenas moderada (<strong>0,54</strong>). "
+            "A Odontoprev, maior carteira do mercado, tem IGR "
+            "<strong>15× menor</strong> que a média. "
+            "<em>Esses contrastes sugerem que fatores operacionais e de "
+            "qualidade de atendimento podem exercer papel relevante — "
+            "hipótese que não pode ser confirmada apenas com este dataset.</em>"
         ),
         unsafe_allow_html=True
     )
@@ -260,9 +266,12 @@ with aba3:
 
     st.markdown(
         insight_box(
-            "Dificuldades financeiras impactam diretamente a experiência "
-            "dos beneficiários. O padrão sugere que a deterioração do "
-            "serviço começa <strong>antes</strong> da falência formal."
+            "Vision Med, Agemed e Unimed Paulistana lideram em volume "
+            "mesmo estando em processo de encerramento. "
+            "O padrão observado nos dados sugere que o aumento de reclamações "
+            "pode anteceder a falência formal — mas essa é uma hipótese "
+            "analítica baseada na correlação temporal, "
+            "<em>não uma relação de causa e efeito estabelecida.</em>"
         ),
         unsafe_allow_html=True
     )

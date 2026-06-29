@@ -65,10 +65,13 @@ st.plotly_chart(fig, use_container_width=True)
 st.markdown(
     insight_box(
         "O IGR cresceu <strong>+228%</strong> entre 2015 e 2024. "
-        "O ponto de inflexão é 2020 — a partir daí, a curva muda de "
-        "inclinação e não retorna ao ritmo anterior. "
+        "O ponto de inflexão observado nos dados é 2020 — a partir daí, "
+        "a curva muda de inclinação e não retorna ao ritmo anterior. "
         "O recuo de 2025 (0,301) é o primeiro desde 2016, "
-        "mas o nível permanece <strong>3× acima</strong> do início da série."
+        "mas o nível permanece <strong>3× acima</strong> do início da série. "
+        "<em>Os dados indicam uma mudança estrutural a partir de 2020, "
+        "possivelmente associada à pandemia. Essa associação é uma hipótese "
+        "analítica — não uma relação causal comprovada.</em>"
     ),
     unsafe_allow_html=True
 )
@@ -171,7 +174,8 @@ st.markdown(
     insight_box(
         "Em 2026, pela <strong>primeira vez na série histórica</strong>, "
         "o porte médio (IGR 0,358) superou o grande porte (IGR 0,319). "
-        "⚠️ 2026 é ano parcial — requer acompanhamento."
+        "⚠️ 2026 é ano parcial — esse comportamento requer acompanhamento "
+        "ao longo do ano para confirmação da tendência."
     ),
     unsafe_allow_html=True
 )
