@@ -3,7 +3,7 @@ title: ANS Complaints Insights
 emoji: 🏥
 colorFrom: green
 colorTo: green
-sdk: docker
+sdk: streamlit
 pinned: false
 ---
 
