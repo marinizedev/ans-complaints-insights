@@ -50,3 +50,4 @@ jobs:
         github_repo_id: ${{ github.repository }}
         huggingface_repo_id: marinizeeng/ans-complaints-insights
         hf_token: ${{ secrets.HF_TOKEN }}
+        space_sdk: streamlit
