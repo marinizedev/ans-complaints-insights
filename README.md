@@ -268,30 +268,56 @@ Para que o deploy automático funcione com segurança absoluta, você deve confi
 
 ### 👥 Guia para Novos Colaboradores
 
-Se você deseja contribuir para este projeto, siga o fluxo abaixo para garantir a conformidade com as esteiras automatizadas:
+Se você deseja contribuir para este projeto, siga o fluxo abaixo para garantir a conformidade com as esteiras de teste e entrega automatizadas:
 
-1. **Clonar e Configurar LFS:**
-   - Certifique-se de ter o Git LFS instalado na sua máquina antes de clonar:
+1. **Clonar e Configurar o Git LFS:**
+   - Instale e habilite a extensão do `Git LFS` em seu ambiente local:
      ```bash
      git lfs install
-     git clone https://github.com/marinizedev/ans-complaints-insights.git
      ```
-2. **Ambiente Local e Dependências:**
-   - Crie um ambiente virtual (`venv`) e instale as dependências:
+   - Em seguida, realize o clone do repositório:
+     ```bash
+     git clone https://github.com/marinizedev/ans-complaints-insights.git
+     cd ans-complaints-insights
+     ```
+
+2. **Criar e Ativar o Ambiente Virtual:**
+   - Utilize a ferramenta nativa `python` para criar uma `venv` limpa:
      ```bash
      python -m venv .venv
-     source .venv/bin/activate  # (ou .venv\Scripts\activate no Windows)
+     ```
+   - Ative o ambiente virtual conforme o seu sistema operacional:
+     - No **Linux/macOS**:
+       ```bash
+       source .venv/bin/activate
+       ```
+     - No **Windows (PowerShell)**:
+       ```powershell
+       .venv\Scripts\Activate.ps1
+       ```
+     - No **Windows (Prompt CMD)**:
+       ```cmd
+       .venv\Scripts\activate.bat
+       ```
+
+3. **Instalar Dependências:**
+   - Atualize o gerenciador de pacotes `pip` e instale as dependências contidas no arquivo `requirements.txt`:
+     ```bash
+     python -m pip install --upgrade pip
      pip install -r requirements.txt
      ```
-3. **Desenvolver e Testar:**
-   - Realize suas alterações de código. **Importante:** Sempre garanta que a suíte de testes passe localmente antes de submeter:
+
+4. **Desenvolver e Testar Localmente:**
+   - Codifique suas melhorias mantendo os padrões estritos de PEP8.
+   - Execute a suíte completa de validações locais usando o comando `pytest` antes de enviar as alterações:
      ```bash
      python -m pytest
      ```
-4. **Abrir Pull Request:**
-   - Faça o push da sua branch de feature e abra um Pull Request para a branch `main`.
-   - O estágio de **CI** será executado no PR. Corrija qualquer falha de teste acusada pela esteira.
-   - Uma vez revisado e aprovado, o merge na `main` disparará automaticamente o **CD**, colocando suas atualizações em produção instantaneamente!
+
+5. **Submeter um Pull Request:**
+   - Publique a sua branch de trabalho no GitHub e abra um Pull Request para a branch `main`.
+   - O estágio de **Continuous Integration (CI)** validará automaticamente o seu código.
+   - Com o Pull Request aprovado e integrado à branch `main`, o pipeline de **Continuous Deployment (CD)** fará o deploy automático das novas atualizações em produção no Hugging Face Spaces!
 
 ---
 
