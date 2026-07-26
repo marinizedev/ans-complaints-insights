@@ -31,3 +31,11 @@ jobs:
         # Adiciona a raiz do projeto ao PATH do Python para localizar o app/ e src/
         export PYTHONPATH="${PYTHONPATH}:."
         pytest tests/
+
+    - name: Fazer Deploy para o Hugging Face Spaces
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: huggingface/hub-sync@v0.1.0
+      with:
+        github_repo_id: ${{ github.repository }}
+        huggingface_repo_id: marinizeeng/ans-complaints-insights
+        hf_token: ${{ secrets.HF_TOKEN }}

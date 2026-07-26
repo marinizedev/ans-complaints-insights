@@ -230,7 +230,68 @@ streamlit run main.py
 pytest tests/
 ```
 
-O pipeline de CI/CD executa os testes automaticamente a cada push via **GitHub Actions**.
+O pipeline de CI executa os testes de regras de negócio automaticamente a cada push ou pull request via **GitHub Actions**.
+
+---
+
+## 🔄 Integração e Deploy Contínuos (CI/CD)
+
+Este projeto adota práticas avançadas de **DevOps para Engenharia e Analytics de Dados**, garantindo entregas consistentes, seguras e totalmente automatizadas.
+
+### ⚙️ Como funciona o Pipeline
+
+O workflow de CI/CD está configurado no arquivo `.github/workflows/main.yml` e atua em dois estágios:
+
+1. **Continuous Integration (CI):**
+   - Disparado automaticamente a cada **push** ou **pull request** nas ramificações do projeto.
+   - Configura um ambiente limpo com Python 3.11, baixa os arquivos reais de dados (com suporte total a Git LFS) e instala as dependências declaradas em `requirements.txt`.
+   - Executa a suíte de testes com `pytest` para certificar que os cálculos de dados, classificação temporal e integridade visual do dashboard estejam 100% corretos.
+
+2. **Continuous Deployment (CD):**
+   - Disparado **exclusivamente após o sucesso do estágio de CI na branch `main`**.
+   - Utiliza a Action oficial recomendada pelo Hugging Face (`huggingface/hub-sync`) para sincronizar a estrutura do repositório de forma transparente e moderna com o Space de produção, sem necessidade de chaves SSH adicionais ou comandos manuais.
+   - O Hugging Face detecta a atualização, compila o `Dockerfile` automaticamente e disponibiliza o dashboard atualizado no ar em minutos.
+
+### 🔑 Configuração de Credenciais (GitHub Secrets)
+
+Para que o deploy automático funcione com segurança absoluta, você deve configurar as credenciais do Hugging Face no GitHub:
+
+1. **Obter Token do Hugging Face:**
+   - Acesse sua conta no Hugging Face, vá em **Settings ➔ Access Tokens**.
+   - Crie um novo token de acesso clicando em **New token** com escopo de **Write** (Escrita). Copie o token gerado.
+
+2. **Salvar no GitHub Secrets:**
+   - No seu repositório do GitHub, vá em **Settings ➔ Secrets and variables ➔ Actions**.
+   - Clique em **New repository secret**.
+   - Defina o nome do secret exatamente como **`HF_TOKEN`** e cole o token de acesso do Hugging Face no campo de valor.
+   - Salve a credencial. O GitHub criptografará o segredo de forma que ele nunca seja exposto no histórico de execução pública.
+
+### 👥 Guia para Novos Colaboradores
+
+Se você deseja contribuir para este projeto, siga o fluxo abaixo para garantir a conformidade com as esteiras automatizadas:
+
+1. **Clonar e Configurar LFS:**
+   - Certifique-se de ter o Git LFS instalado na sua máquina antes de clonar:
+     ```bash
+     git lfs install
+     git clone https://github.com/marinizedev/ans-complaints-insights.git
+     ```
+2. **Ambiente Local e Dependências:**
+   - Crie um ambiente virtual (`venv`) e instale as dependências:
+     ```bash
+     python -m venv .venv
+     source .venv/bin/activate  # (ou .venv\Scripts\activate no Windows)
+     pip install -r requirements.txt
+     ```
+3. **Desenvolver e Testar:**
+   - Realize suas alterações de código. **Importante:** Sempre garanta que a suíte de testes passe localmente antes de submeter:
+     ```bash
+     python -m pytest
+     ```
+4. **Abrir Pull Request:**
+   - Faça o push da sua branch de feature e abra um Pull Request para a branch `main`.
+   - O estágio de **CI** será executado no PR. Corrija qualquer falha de teste acusada pela esteira.
+   - Uma vez revisado e aprovado, o merge na `main` disparará automaticamente o **CD**, colocando suas atualizações em produção instantaneamente!
 
 ---
 
