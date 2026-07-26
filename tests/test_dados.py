@@ -16,7 +16,7 @@ st.spinner = MagicMock()
 BASE_DIR = Path(__file__).resolve().parents[1]
 ARQUIVO_LOCAL = BASE_DIR / "data" / "processed" / "igr_processed.csv"
 
-from app.data_loader import CORES
+from app.data_loader import CORES, assegurar_arquivo_processado
 
 
 # ==================================================================
@@ -29,10 +29,12 @@ def df_testes():
     Carrega o dataset processado localmente e adiciona as colunas
     auxiliares para validação das regras de negócio.
     """
-    if not ARQUIVO_LOCAL.exists():
+    caminho_dados = assegurar_arquivo_processado()
+
+    if not caminho_dados.exists():
         pytest.skip("Arquivo processado não encontrado.")
 
-    df = pd.read_csv(ARQUIVO_LOCAL, sep=",", encoding="utf-8")
+    df = pd.read_csv(caminho_dados, sep=",", encoding="utf-8")
 
     ANOS_PARCIAIS = [2026]
     ANO_PANDEMIA  = 2020
