@@ -230,7 +230,94 @@ streamlit run main.py
 pytest tests/
 ```
 
-O pipeline de CI/CD executa os testes automaticamente a cada push via **GitHub Actions**.
+O pipeline de CI executa os testes de regras de negócio automaticamente a cada push ou pull request via **GitHub Actions**.
+
+---
+
+## 🔄 Integração e Deploy Contínuos (CI/CD)
+
+Este projeto adota práticas avançadas de **DevOps para Engenharia e Analytics de Dados**, garantindo entregas consistentes, seguras e totalmente automatizadas.
+
+### ⚙️ Como funciona o Pipeline
+
+O workflow de CI/CD está configurado no arquivo `.github/workflows/main.yml` e atua em dois estágios:
+
+1. **Continuous Integration (CI):**
+   - Disparado automaticamente a cada **push** ou **pull request** nas ramificações do projeto.
+   - Configura um ambiente limpo com Python 3.11, baixa os arquivos reais de dados (com suporte total a Git LFS) e instala as dependências declaradas em `requirements.txt`.
+   - Executa a suíte de testes com `pytest` para certificar que os cálculos de dados, classificação temporal e integridade visual do dashboard estejam 100% corretos.
+
+2. **Continuous Deployment (CD):**
+   - Disparado **exclusivamente após o sucesso do estágio de CI na branch `main`**.
+   - Utiliza a Action oficial recomendada pelo Hugging Face (`huggingface/hub-sync`) para sincronizar a estrutura do repositório de forma transparente e moderna com o Space de produção, sem necessidade de chaves SSH adicionais ou comandos manuais.
+   - O Hugging Face detecta a atualização, compila o `Dockerfile` automaticamente e disponibiliza o dashboard atualizado no ar em minutos.
+
+### 🔑 Configuração de Credenciais (GitHub Secrets)
+
+Para que o deploy automático funcione com segurança absoluta, você deve configurar as credenciais do Hugging Face no GitHub:
+
+1. **Obter Token do Hugging Face:**
+   - Acesse sua conta no Hugging Face, vá em **Settings ➔ Access Tokens**.
+   - Crie um novo token de acesso clicando em **New token** com escopo de **Write** (Escrita). Copie o token gerado.
+
+2. **Salvar no GitHub Secrets:**
+   - No seu repositório do GitHub, vá em **Settings ➔ Secrets and variables ➔ Actions**.
+   - Clique em **New repository secret**.
+   - Defina o nome do secret exatamente como **`HF_TOKEN`** e cole o token de acesso do Hugging Face no campo de valor.
+   - Salve a credencial. O GitHub criptografará o segredo de forma que ele nunca seja exposto no histórico de execução pública.
+
+### 👥 Guia para Novos Colaboradores
+
+Se você deseja contribuir para este projeto, siga o fluxo abaixo para garantir a conformidade com as esteiras de teste e entrega automatizadas:
+
+1. **Clonar e Configurar o Git LFS:**
+   - Instale e habilite a extensão do `Git LFS` em seu ambiente local:
+     ```bash
+     git lfs install
+     ```
+   - Em seguida, realize o clone do repositório:
+     ```bash
+     git clone https://github.com/marinizedev/ans-complaints-insights.git
+     cd ans-complaints-insights
+     ```
+
+2. **Criar e Ativar o Ambiente Virtual:**
+   - Utilize a ferramenta nativa `python` para criar uma `venv` limpa:
+     ```bash
+     python -m venv .venv
+     ```
+   - Ative o ambiente virtual conforme o seu sistema operacional:
+     - No **Linux/macOS**:
+       ```bash
+       source .venv/bin/activate
+       ```
+     - No **Windows (PowerShell)**:
+       ```powershell
+       .venv\Scripts\Activate.ps1
+       ```
+     - No **Windows (Prompt CMD)**:
+       ```cmd
+       .venv\Scripts\activate.bat
+       ```
+
+3. **Instalar Dependências:**
+   - Atualize o gerenciador de pacotes `pip` e instale as dependências contidas no arquivo `requirements.txt`:
+     ```bash
+     python -m pip install --upgrade pip
+     pip install -r requirements.txt
+     ```
+
+4. **Desenvolver e Testar Localmente:**
+   - Codifique suas melhorias mantendo os padrões estritos de PEP8.
+   - Execute a suíte completa de validações locais usando o comando `pytest` antes de enviar as alterações:
+     ```bash
+     python -m pytest
+     ```
+
+5. **Submeter um Pull Request:**
+   - Publique a sua branch de trabalho no GitHub e abra um Pull Request para a branch `main`.
+   - O estágio de **Continuous Integration (CI)** validará automaticamente o seu código.
+   - Com o Pull Request aprovado e integrado à branch `main`, o pipeline de **Continuous Deployment (CD)** fará o deploy automático das novas atualizações em produção no Hugging Face Spaces!
 
 ---
 

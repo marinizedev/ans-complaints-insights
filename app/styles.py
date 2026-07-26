@@ -3,6 +3,8 @@
 # Estilos globais — Paleta Teal Profissional
 # ==================================================================
 
+from typing import Any
+
 DARK_THEME_CSS = """
 <style>
 
@@ -389,7 +391,7 @@ PLOTLY_LAYOUT = dict(
 
 def apply_layout(fig: "go.Figure", height: int = 320, **kwargs: Any) -> "go.Figure":
     import plotly.graph_objects as go
-    from typing import Any
+
     layout = {**PLOTLY_LAYOUT, "height": height, **kwargs}
     fig.update_layout(**layout)
     return fig
