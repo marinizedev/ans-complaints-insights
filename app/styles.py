@@ -4,6 +4,7 @@
 # ==================================================================
 
 from typing import Any
+import plotly.graph_objects as go
 
 DARK_THEME_CSS = """
 <style>
@@ -390,8 +391,6 @@ PLOTLY_LAYOUT = dict(
 
 
 def apply_layout(fig: "go.Figure", height: int = 320, **kwargs: Any) -> "go.Figure":
-    import plotly.graph_objects as go
-
     layout = {**PLOTLY_LAYOUT, "height": height, **kwargs}
     fig.update_layout(**layout)
     return fig
