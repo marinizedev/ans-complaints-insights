@@ -13,6 +13,8 @@
 import pandas as pd
 from pathlib import Path
 import streamlit as st
+import urllib.request
+import os
 
 # ==================================================================
 # CONSTANTES
@@ -24,7 +26,63 @@ ARQUIVO_PROCESSADO = (
     BASE_DIR / "data" / "processed" / "igr_processed.csv"
 )
 
+ARQUIVO_REAL = (
+    BASE_DIR / "data" / "processed" / "igr_real.csv"
+)
+
 ANOS_PARCIAIS = [2026]
+
+
+# ==================================================================
+# GARANTIA DE REPRODUTIBILIDADE (FALLBACK GIT LFS)
+# ==================================================================
+
+def assegurar_arquivo_processado() -> Path:
+    """
+    Garante que o arquivo de dados processados exista em sua versão real completa.
+    Se a versão real (data/processed/igr_real.csv) não existir, faz o download do
+    dataset real a partir do repositório público no Hugging Face Spaces.
+
+    Retorna o caminho do arquivo real que deve ser lido.
+    """
+    url_remoto = "https://huggingface.co/spaces/marinizeeng/ans-complaints-insights/resolve/main/data/processed/igr_processed.csv"
+
+    ARQUIVO_REAL.parent.mkdir(parents=True, exist_ok=True)
+
+    # Se o arquivo original local (igr_processed.csv) for real/completo (> 1 MB), usamos ele diretamente
+    if ARQUIVO_PROCESSADO.exists() and ARQUIVO_PROCESSADO.stat().st_size > 1_000_000:
+        return ARQUIVO_PROCESSADO
+
+    baixar = False
+    if not ARQUIVO_REAL.exists():
+        baixar = True
+    else:
+        # Se por algum motivo igr_real.csv for menor que 1 MB, está incompleto
+        if ARQUIVO_REAL.stat().st_size < 1_000_000:
+            baixar = True
+
+    if baixar:
+        temp_file = ARQUIVO_REAL.with_suffix(".tmp")
+        try:
+            urllib.request.urlretrieve(url_remoto, temp_file)
+            if temp_file.exists():
+                if ARQUIVO_REAL.exists():
+                    os.remove(ARQUIVO_REAL)
+                os.rename(temp_file, ARQUIVO_REAL)
+        except Exception as e:
+            if temp_file.exists():
+                try:
+                    os.remove(temp_file)
+                except Exception:
+                    pass
+            # Se falhar o download remoto por falta de rede, tentamos retornar o igr_processed.csv de fallback
+            if ARQUIVO_PROCESSADO.exists():
+                return ARQUIVO_PROCESSADO
+            raise RuntimeError(
+                f"Erro crítico ao baixar o arquivo de dados reais para reprodutibilidade: {e}"
+            )
+
+    return ARQUIVO_REAL
 IGR_MERCADO   = 0.201619
 ANO_PANDEMIA  = 2020
 
@@ -57,8 +115,10 @@ def carregar_dados() -> pd.DataFrame:
     - src/process_igr.py  → gera o CSV processado a partir do bruto
     - app/data_loader.py  → consome o CSV processado e prepara o dashboard
     """
+    caminho_dados = assegurar_arquivo_processado()
+
     df = pd.read_csv(
-        ARQUIVO_PROCESSADO,
+        caminho_dados,
         sep=",",
         encoding="utf-8",
         low_memory=False

@@ -318,7 +318,7 @@ hr {
 """
 
 
-def inject_css():
+def inject_css() -> None:
     import streamlit as st
     st.markdown(DARK_THEME_CSS, unsafe_allow_html=True)
 
@@ -387,7 +387,9 @@ PLOTLY_LAYOUT = dict(
 )
 
 
-def apply_layout(fig, height: int = 320, **kwargs):
+def apply_layout(fig: "go.Figure", height: int = 320, **kwargs: Any) -> "go.Figure":
+    import plotly.graph_objects as go
+    from typing import Any
     layout = {**PLOTLY_LAYOUT, "height": height, **kwargs}
     fig.update_layout(**layout)
     return fig
