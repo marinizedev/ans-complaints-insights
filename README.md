@@ -20,7 +20,6 @@ pinned: false
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.45-FF4B4B?logo=streamlit&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-2.2-150458?logo=pandas&logoColor=white)
 ![Plotly](https://img.shields.io/badge/Plotly-5.24-3F4F75?logo=plotly&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker&logoColor=white)
 ![HuggingFace](https://img.shields.io/badge/🤗_Hugging_Face-Space-FFD21E)
 ![License](https://img.shields.io/badge/Licença-MIT-2dd4a0)
 
@@ -36,7 +35,7 @@ Este projeto nasceu de uma pergunta simples:
 
 > **As reclamações dos beneficiários de planos de saúde cresceram porque aumentou o número de pessoas com plano — ou há algo mais grave acontecendo?**
 
-A resposta está nos dados.
+A resposta emerge da análise dos dados.
 
 Entre 2015 e 2024, a base de beneficiários cresceu **21%**. As reclamações cresceram **296%**. E a pandemia de 2020 foi o **ponto de inflexão** que mudou a trajetória do setor de forma estrutural — sem retorno ao ritmo anterior.
 
@@ -49,13 +48,15 @@ O projeto percorre todo o ciclo analítico: da coleta e processamento dos dados 
 Além da construção do dashboard, o projeto contempla todas as etapas de um fluxo analítico completo:
 
 - entendimento da base de dados;
-- limpeza e padronização;
+- limpeza e padronização dos dados;
 - investigação metodológica;
 - análise exploratória (EDA);
 - validação de hipóteses;
 - descoberta de insights;
-- construção de Data Storytelling;
-- disponibilização em produção.
+- construção do Data Storytelling;
+- desenvolvimento de dashboard interativo;
+- testes automatizados;
+- integração e deploy contínuos (CI/CD).
 
 Durante o desenvolvimento foi identificada e corrigida uma inconsistência importante na forma de calcular o IGR médio, garantindo que todas as análises utilizassem a metodologia estatisticamente correta.
 
@@ -106,7 +107,7 @@ Pela primeira vez na série, o porte médio (IGR 0,358) superou o grande porte (
 
 ---
 
-## Fluxo Analítico
+## 🔄 Fluxo Analítico
 
 ![fluxo](images/fluxo_analitico.png)
 
@@ -159,9 +160,9 @@ ans-complaints-insights/
 │   └── styles.py                 # CSS global e layout Plotly (tema Teal)
 │
 ├── data/
-│   ├── raw/                      # Dataset bruto da ANS (.gitignore)
+│   ├── raw/                      # Dados brutos da ANS
 │   └── processed/
-│       └── igr_processed.csv     # Dataset processado (Git LFS)
+│       └── igr_processed.csv     # Base consolidada utilizada pelo dashboard
 │
 ├── docs/                         # Documentação analítica completa
 │   ├── data_understanding_report.md
@@ -192,7 +193,6 @@ ans-complaints-insights/
 │   └── workflows/
 │       └── main.yml              # Pipeline CI/CD — pytest automático
 │
-├── Dockerfile                    # Deploy no Hugging Face Spaces
 ├── main.py                       # Ponto de entrada do Streamlit
 └── requirements.txt
 ```
@@ -224,6 +224,8 @@ pip install -r requirements.txt
 streamlit run main.py
 ```
 
+> **Observação:** o projeto utiliza Git LFS para versionamento eficiente da base processada. Caso o repositório seja clonado sem suporte ao Git LFS, o mecanismo de fallback implementado no projeto realiza automaticamente a obtenção do dataset necessário para execução da aplicação e dos testes.
+
 ---
 
 ## 🧪 Testes
@@ -238,88 +240,26 @@ O pipeline de CI executa os testes de regras de negócio automaticamente a cada 
 
 ## 🔄 Integração e Deploy Contínuos (CI/CD)
 
-Este projeto adota práticas avançadas de **DevOps para Engenharia e Analytics de Dados**, garantindo entregas consistentes, seguras e totalmente automatizadas.
+Este projeto utiliza um pipeline automatizado de CI/CD com GitHub Actions e Hugging Face Spaces.
 
-### ⚙️ Como funciona o Pipeline
+### Continuous Integration (CI)
 
-O workflow de CI/CD está configurado no arquivo `.github/workflows/main.yml` e atua em dois estágios:
+A cada push ou pull request:
 
-1. **Continuous Integration (CI):**
-   - Disparado automaticamente a cada **push** ou **pull request** nas ramificações do projeto.
-   - Configura um ambiente limpo com Python 3.11, baixa os arquivos reais de dados (com suporte total a Git LFS) e instala as dependências declaradas em `requirements.txt`.
-   - Executa a suíte de testes com `pytest` para certificar que os cálculos de dados, classificação temporal e integridade visual do dashboard estejam 100% corretos.
+- configuração automática do ambiente Python 3.11;
+- instalação das dependências;
+- execução da suíte de testes com `pytest`;
+- validação das regras de negócio da aplicação.
 
-2. **Continuous Deployment (CD):**
-   - Disparado **exclusivamente após o sucesso do estágio de CI na branch `main`**.
-   - Utiliza a Action oficial recomendada pelo Hugging Face (`huggingface/hub-sync`) para sincronizar a estrutura do repositório de forma transparente e moderna com o Space de produção, sem necessidade de chaves SSH adicionais ou comandos manuais.
-   - O Hugging Face detecta a atualização, compila o `Dockerfile` automaticamente e disponibiliza o dashboard atualizado no ar em minutos.
+### Continuous Deployment (CD)
 
-### 🔑 Configuração de Credenciais (GitHub Secrets)
+Após a conclusão bem-sucedida do estágio de CI na branch `main`, o deploy é realizado automaticamente para o Hugging Face Spaces.
 
-Para que o deploy automático funcione com segurança absoluta, você deve configurar as credenciais do Hugging Face no GitHub:
+O pipeline utiliza autenticação segura via GitHub Secrets (`HF_TOKEN`) e sincroniza o código diretamente com o repositório remoto do Space por meio de um `git push` automatizado.
 
-1. **Obter Token do Hugging Face:**
-   - Acesse sua conta no Hugging Face, vá em **Settings ➔ Access Tokens**.
-   - Crie um novo token de acesso clicando em **New token** com escopo de **Write** (Escrita). Copie o token gerado.
+Essa estratégia simplifica o processo de deploy e reduz a dependência de Actions específicas do Hugging Face, tornando o pipeline mais transparente e fácil de manter.
 
-2. **Salvar no GitHub Secrets:**
-   - No seu repositório do GitHub, vá em **Settings ➔ Secrets and variables ➔ Actions**.
-   - Clique em **New repository secret**.
-   - Defina o nome do secret exatamente como **`HF_TOKEN`** e cole o token de acesso do Hugging Face no campo de valor.
-   - Salve a credencial. O GitHub criptografará o segredo de forma que ele nunca seja exposto no histórico de execução pública.
-
-### 👥 Guia para Novos Colaboradores
-
-Se você deseja contribuir para este projeto, siga o fluxo abaixo para garantir a conformidade com as esteiras de teste e entrega automatizadas:
-
-1. **Clonar e Configurar o Git LFS:**
-   - Instale e habilite a extensão do `Git LFS` em seu ambiente local:
-     ```bash
-     git lfs install
-     ```
-   - Em seguida, realize o clone do repositório:
-     ```bash
-     git clone https://github.com/marinizedev/ans-complaints-insights.git
-     cd ans-complaints-insights
-     ```
-
-2. **Criar e Ativar o Ambiente Virtual:**
-   - Utilize a ferramenta nativa `python` para criar uma `venv` limpa:
-     ```bash
-     python -m venv .venv
-     ```
-   - Ative o ambiente virtual conforme o seu sistema operacional:
-     - No **Linux/macOS**:
-       ```bash
-       source .venv/bin/activate
-       ```
-     - No **Windows (PowerShell)**:
-       ```powershell
-       .venv\Scripts\Activate.ps1
-       ```
-     - No **Windows (Prompt CMD)**:
-       ```cmd
-       .venv\Scripts\activate.bat
-       ```
-
-3. **Instalar Dependências:**
-   - Atualize o gerenciador de pacotes `pip` e instale as dependências contidas no arquivo `requirements.txt`:
-     ```bash
-     python -m pip install --upgrade pip
-     pip install -r requirements.txt
-     ```
-
-4. **Desenvolver e Testar Localmente:**
-   - Codifique suas melhorias mantendo os padrões estritos de PEP8.
-   - Execute a suíte completa de validações locais usando o comando `pytest` antes de enviar as alterações:
-     ```bash
-     python -m pytest
-     ```
-
-5. **Submeter um Pull Request:**
-   - Publique a sua branch de trabalho no GitHub e abra um Pull Request para a branch `main`.
-   - O estágio de **Continuous Integration (CI)** validará automaticamente o seu código.
-   - Com o Pull Request aprovado e integrado à branch `main`, o pipeline de **Continuous Deployment (CD)** fará o deploy automático das novas atualizações em produção no Hugging Face Spaces!
+Durante o pipeline, o GitHub Actions realiza normalmente o checkout do repositório com suporte ao Git LFS, garantindo que os arquivos versionados sejam disponibilizados corretamente durante a execução do workflow.
 
 ---
 
@@ -327,12 +267,14 @@ Se você deseja contribuir para este projeto, siga o fluxo abaixo para garantir 
 
 | Item | Detalhe |
 |---|---|
-| **Origem** | [Portal de Dados Abertos da ANS](https://dadosabertos.ans.gov.br/FTP/PDA/IGR) |
+| **Origem** | Portal de Dados Abertos da ANS |
 | **Dataset** | Índice Geral de Reclamações (IGR) |
-| **Período** | 2015 a 2026 |
+| **Período analisado** | 2015–2026* |
 | **Registros** | 151.501 |
-| **Operadoras** | 1.411 únicas |
-| **Cobertura** | Assistência médica e exclusivamente odontológica |
+| **Operadoras** | 1.411 |
+| **Cobertura** | Assistência médica e odontológica |
+
+\* O ano de 2026 contém dados parciais.
 
 ---
 
@@ -341,14 +283,14 @@ Se você deseja contribuir para este projeto, siga o fluxo abaixo para garantir 
 | Camada | Tecnologia |
 |---|---|
 | Linguagem | Python 3.11 |
+| Processamento de Dados | Pandas 2.2 |
 | Dashboard | Streamlit 1.45 |
-| Visualização | Plotly 5.24 |
-| Análise de Dados | Pandas 2.2 |
+| Visualizações | Plotly 5.24 |
 | Testes | pytest 8.3 |
 | CI/CD | GitHub Actions |
-| Containerização | Docker |
 | Deploy | Hugging Face Spaces |
-| Versionamento de arquivos grandes | Git LFS |
+| Controle de versão | Git |
+| Armazenamento de arquivos grandes | Git LFS |
 
 ---
 
@@ -357,6 +299,8 @@ Se você deseja contribuir para este projeto, siga o fluxo abaixo para garantir 
 Projeto desenvolvido por **Marinize Santana** como parte do portfólio de Data Engineering e Analytics Engineering.
 
 Estudante de Análise e Desenvolvimento de Sistemas na UniFECAF, com foco em construir soluções analíticas baseadas em problemas reais.
+
+Este projeto foi desenvolvido com foco na aplicação de boas práticas de Engenharia de Dados, Analytics Engineering e Data Storytelling utilizando dados públicos da ANS.
 
 <div align="center">
 
