@@ -42,12 +42,16 @@ jobs:
     - name: Baixar código do repositório
       uses: actions/checkout@v4
       with:
+        fetch-depth: 0
         lfs: true
 
-    - name: Fazer Deploy para o Hugging Face Spaces
-      uses: huggingface/hub-sync@v0.2.0
-      with:
-        github_repo_id: ${{ github.repository }}
-        huggingface_repo_id: marinizeeng/ans-complaints-insights
-        hf_token: ${{ secrets.HF_TOKEN }}
-        
+    - name: Configurar Git e Autenticação
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+
+    - name: Fazer Deploy para o Hugging Face Spaces via Git Push
+      run: |
+        git remote remove space 2>/dev/null || true
+        git remote add space https://marinizeeng:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/marinizeeng/ans-complaints-insights
+        git push --force space HEAD:main
