@@ -22,7 +22,7 @@
 # A solução correta é recalcular o IGR agregando numerador e
 # denominador separadamente antes de aplicar a fórmula:
 #
-#   IGR = (SOMA(qtd_reclamacoes) / SOMA(qtd_beneficiarios)) * 1.000
+#   IGR = (SOMA(qtd_reclamacoes) / SOMA(qtd_beneficiarios)) * 100.000
 #
 # Para documentação completa sobre essa descoberta, consultar:
 #   docs/investigacao_inicial.md
