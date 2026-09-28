@@ -97,13 +97,13 @@ A correlação entre quantidade de beneficiários e reclamações é moderada (*
 O IGR da assistência médica é **27 vezes** maior que o da cobertura exclusivamente odontológica — proporção que se manteve estável ao longo de toda a série histórica.
 
 ### 📌 Prevent Senior — outlier entre operadoras ativas
-IGR de **13,21** — **65 vezes** acima do IGR de mercado (0,202). Única operadora ativa nesse patamar, com comportamento completamente distinto das demais grandes operadoras.
+IGR de **1.321,33** — **65 vezes** acima do IGR de mercado (20,162). Única operadora ativa nesse patamar, com comportamento completamente distinto das demais grandes operadoras.
 
 ### 📌 Operadoras em falência continuam impactando beneficiários
-68 operadoras identificadas com indícios de falência ou liquidação. O padrão sugere que a deterioração do serviço começa **antes** da falência formal.
+71 operadoras identificadas com indícios de falência ou liquidação. O padrão sugere que a deterioração do serviço começa **antes** da falência formal.
 
 ### 📌 Inversão histórica em 2026
-Pela primeira vez na série, o porte médio (IGR 0,358) superou o grande porte (IGR 0,319). Comportamento monitorado — 2026 é ano parcial.
+Pela primeira vez na série, o porte médio (IGR 35,823) superou o grande porte (IGR 31,859). Comportamento monitorado — 2026 é ano parcial.
 
 ---
 
@@ -121,12 +121,12 @@ Os valores anuais do IGR estavam completamente fora da realidade.
 
 > Esta foi a descoberta técnica mais relevante do projeto e impacta diretamente a confiabilidade de qualquer análise sobre o IGR.
 
-A coluna `IGR` do dataset da ANS já contém o índice **calculado individualmente** para cada operadora. Calcular a média aritmética desse campo ignora o tamanho de cada carteira, produzindo valores completamente distorcidos.
+A coluna `IGR` do dataset da ANS já contém o índice **calculado individualmente** para cada operadora. Calcular a média aritmética desse campo dá o mesmo peso a carteiras de tamanhos diferentes e não representa adequadamente o IGR agregado do mercado.
 
 **❌ Método incorreto — média simples:**
 ```python
 df.groupby("competencia")["igr"].mean()
-# Produz valores como 357 em 2022 — matematicamente inválido
+# Média descritiva entre operadoras, não o IGR agregado do mercado
 ```
 
 **✅ Método correto — adotado neste projeto:**
@@ -141,11 +141,13 @@ igr_correto = (
 igr_correto["igr"] = (
     igr_correto["total_reclamacoes"]
     / igr_correto["total_beneficiarios"]
-    * 1000
+    * 100000
 )
 ```
 
-**Fórmula do IGR:** `IGR = (QTD_RECLAMACOES / QTD_BENEFICIARIOS) × 1.000`
+**Fórmula do IGR:** `IGR = (QTD_RECLAMACOES / QTD_BENEFICIARIOS) × 100.000`
+
+> **Revisão posterior:** a ponderação pela carteira foi mantida, mas a unidade oficial da ANS foi corrigida de “por 1.000” para “por 100.000 beneficiários”. A granularidade da base também está sendo investigada. Consulte a [nota metodológica da revisão](docs/revisao_metodologica_2026.md).
 
 ---
 
@@ -169,7 +171,8 @@ ans-complaints-insights/
 │   ├── investigacao_inicial.md
 │   ├── insights_iniciais.md
 │   ├── hypotheses.md
-│   └── perguntas_negocio.md
+│   ├── perguntas_negocio.md
+│   └── revisao_metodologica_2026.md
 │
 ├── images/                       # Screenshots do dashboard
 │
@@ -201,7 +204,7 @@ ans-complaints-insights/
 
 ## 🚀 Como Executar Localmente
 
-**Pré-requisitos:** Python 3.11+
+**Pré-requisitos:** Python >=3.11 e <3.14
 
 ```bash
 # Clone o repositório

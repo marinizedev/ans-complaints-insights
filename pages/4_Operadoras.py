@@ -115,7 +115,7 @@ with aba1:
             "O IGR cresceu <strong>+228%</strong> entre 2015 e 2024. "
             "O ponto de inflexão observado nos dados é 2020 — a partir daí, "
             "a curva muda de inclinação e não retorna ao ritmo anterior. "
-            "O recuo de 2025 (0,301) é o primeiro desde 2016, "
+            "O recuo de 2025 (30,142) é o primeiro desde 2016, "
             "mas o nível permanece <strong>3× acima</strong> do início da série. "
             "<em>Os dados indicam uma mudança estrutural a partir de 2020, "
             "possivelmente associada à pandemia. Essa associação é uma hipótese "
@@ -216,7 +216,7 @@ with aba3:
 
     col_a, col_b = st.columns(2)
     with col_a:
-        st.metric("OPERADORAS IDENTIFICADAS", "68",
+        st.metric("OPERADORAS IDENTIFICADAS", f"{falidas['registro_ans'].nunique():,}".replace(",", "."),
                   "com termos na razão social")
     with col_b:
         st.metric("TOTAL DE RECLAMAÇÕES",

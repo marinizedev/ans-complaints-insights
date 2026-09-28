@@ -176,7 +176,7 @@ st.markdown(
     """
     <div style="font-size:12px; color:#303050; line-height:1.8;">
     Fonte: ANS — Agência Nacional de Saúde Suplementar &nbsp;·&nbsp;
-    IGR = reclamações por mil beneficiários &nbsp;·&nbsp;
+    IGR = reclamações por 100.000 beneficiários &nbsp;·&nbsp;
     Método: ponderado pela carteira &nbsp;·&nbsp;
     2026 = ano parcial
     </div>

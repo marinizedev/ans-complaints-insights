@@ -60,7 +60,7 @@ with col3:
               "com histórico ativo")
 with col4:
     st.metric("IGR DE MERCADO", f"{IGR_MERCADO:.3f}",
-              "por mil beneficiários · 2015–2025")
+              "por 100.000 beneficiários · 2015–2025")
 
 st.markdown("---")
 
@@ -119,7 +119,7 @@ st.markdown(
         "O IGR cresceu <strong>+228%</strong> entre 2015 e 2024. "
         "O ponto de inflexão observado nos dados é 2020 — a partir daí, "
         "a curva muda de inclinação e não retorna ao ritmo anterior. "
-        "O recuo de 2025 (0,301) é o primeiro desde 2016, "
+        "O recuo de 2025 (30,142) é o primeiro desde 2016, "
         "mas o nível permanece <strong>3× acima</strong> do início da série. "
         "<em>Os dados indicam uma mudança estrutural a partir de 2020, "
         "possivelmente associada à pandemia. Essa associação é uma hipótese "

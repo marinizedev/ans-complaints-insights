@@ -99,8 +99,8 @@ O arquivo CSV em disco ocupa 18,7 MB.
 
 ## Insight 01 — Crescimento das reclamações supera o crescimento de beneficiários
 
-Entre 2015 e 2024, a taxa de reclamações por mil beneficiários
-(IGR correto) aumentou de **0,107 para 0,352**.
+Entre 2015 e 2024, a taxa de reclamações por 100.000 beneficiários
+(IGR correto) aumentou de **10,739 para 35,211**.
 
 Isso representa crescimento superior a **3 vezes** na frequência de
 reclamações, enquanto a base de beneficiários cresceu aproximadamente
@@ -127,9 +127,9 @@ O IGR correto por porte confirma:
 
 | Porte   | IGR correto |
 |---------|-------------|
-| Grande  | 0,223       |
-| Médio   | 0,159       |
-| Pequeno | 0,134       |
+| Grande  | 22,332       |
+| Médio   | 15,887       |
+| Pequeno | 13,441       |
 
 Operadoras de grande porte apresentam maior frequência relativa de
 reclamações mesmo após normalização pela carteira.
@@ -142,19 +142,19 @@ Correlação entre quantidade de beneficiários e quantidade de reclamações:
 **0,54** (moderada).
 
 Entre as 10 maiores operadoras por beneficiários, o comportamento
-frente ao mercado (IGR de mercado 2015–2025: **0,2016**) é bastante
+frente ao mercado (IGR de mercado 2015–2025: **20,1619**) é bastante
 heterogêneo:
 
 | Operadora               | IGR correto | vs mercado           |
 |-------------------------|-------------|----------------------|
-| Odontoprev              | 0,013       | 0,07× — muito abaixo |
-| Hapvida                 | 0,184       | 0,91× — abaixo       |
-| Amil                    | 0,290       | 1,44× — acima        |
-| Notre Dame Intermédica  | 0,334       | 1,66× — acima        |
-| Bradesco Saúde          | 0,437       | **2,17× — acima**    |
-| Sul América             | 0,342       | 1,70× — acima        |
-| Unimed Nacional         | 0,425       | **2,11× — acima**    |
-| Porto Seguro            | 0,141       | 0,70× — abaixo       |
+| Odontoprev              | 1,300       | 0,07× — muito abaixo |
+| Hapvida                 | 18,426       | 0,91× — abaixo       |
+| Amil                    | 29,000       | 1,44× — acima        |
+| Notre Dame Intermédica  | 33,400       | 1,66× — acima        |
+| Bradesco Saúde          | 43,700       | **2,17× — acima**    |
+| Sul América             | 34,200       | 1,70× — acima        |
+| Unimed Nacional         | 42,500       | **2,11× — acima**    |
+| Porto Seguro            | 14,100       | 0,70× — abaixo       |
 
 Carteiras semelhantes, comportamentos completamente distintos.
 Fatores operacionais e de atendimento exercem papel relevante.
@@ -165,8 +165,8 @@ Fatores operacionais e de atendimento exercem papel relevante.
 
 | Cobertura          | Reclamações | Participação | IGR correto |
 |--------------------|-------------|--------------|-------------|
-| Assistência médica | 2.112.387   | 98,07%       | 0,313       |
-| Odontológica       | 41.635      | 1,93%        | 0,011       |
+| Assistência médica | 2.112.387   | 98,07%       | 31,293       |
+| Odontológica       | 41.635      | 1,93%        | 1,134       |
 
 A diferença no IGR correto entre os dois tipos de cobertura é de
 **27 vezes**.
@@ -178,7 +178,7 @@ todo o período analisado, variando entre 96,51% e 98,72%.
 
 ## Insight 05 — Operadoras em falência ou liquidação concentram volumes expressivos de reclamações
 
-68 operadoras identificadas com indícios de falência, liquidação ou
+71 operadoras identificadas com indícios de falência, liquidação ou
 insolvência na razão social.
 
 Mesmo representando parcela pequena do mercado, acumulam mais de
@@ -187,11 +187,11 @@ de reclamação após aplicação do filtro mínimo de beneficiários:
 
 | Operadora               | IGR correto |
 |-------------------------|-------------|
-| Viva Planos (MF)        | 12,858      |
-| Medical Brasil (MF)     | 10,549      |
-| Minas Center Med (MF)   | 9,578       |
-| Salutar (MF)            | 7,902       |
-| SOSaúde (MF)            | 4,983       |
+| Viva Planos (MF)        | 1.285,848      |
+| Medical Brasil (MF)     | 1.054,907      |
+| Minas Center Med (MF)   | 957,793       |
+| Salutar (MF)            | 790,167       |
+| SOSaúde (MF)            | 498,348       |
 
 Dificuldades financeiras impactam diretamente a experiência dos
 beneficiários.
@@ -202,10 +202,10 @@ beneficiários.
 
 A Prevent Senior Corporate apresenta o maior IGR correto entre
 operadoras ativas (não em processo de falência ou liquidação):
-**13,213** — mais de **65 vezes** o IGR de mercado.
+**1.321,330** — mais de **65 vezes** o IGR de mercado.
 
 Comportamento completamente distinto das demais operadoras de
-grande porte, que apresentam IGR entre 0,13 e 0,44.
+grande porte, que apresentam IGR entre 13 e 44.
 
 ---
 
@@ -215,11 +215,11 @@ Evolução do IGR correto por porte nos últimos anos:
 
 | Ano  | Grande | Médio     | Pequeno |
 |------|--------|-----------|---------|
-| 2022 | 0,247  | 0,184     | 0,183   |
-| 2023 | 0,364  | 0,265     | 0,184   |
-| 2024 | 0,370  | 0,293     | 0,240   |
-| 2025 | 0,311  | 0,271     | 0,221   |
-| 2026 | 0,319  | **0,358** | 0,234   |
+| 2022 | 24,700  | 18,426     | 18,277   |
+| 2023 | 36,412  | 26,483     | 18,426   |
+| 2024 | 36,952  | 29,348     | 23,967   |
+| 2025 | 31,108  | 27,143     | 22,116   |
+| 2026 | 31,859  | **35,823** | 23,361   |
 
 Em 2026, pela primeira vez na série histórica, o porte médio ultrapassou
 o grande porte em frequência relativa de reclamações.
@@ -233,18 +233,18 @@ o grande porte em frequência relativa de reclamações.
 
 | Ano  | IGR correto  |
 |------|--------------|
-| 2015 | 0,107        |
-| 2016 | 0,096        |
-| 2017 | 0,098        |
-| 2018 | 0,107        |
-| 2019 | 0,145        |
-| 2020 | 0,160        |
-| 2021 | 0,195        |
-| 2022 | 0,233        |
-| 2023 | 0,340        |
-| 2024 | 0,352        |
-| 2025 | 0,301        |
-| 2026 | 0,320 ⚠️    |
+| 2015 | 10,739        |
+| 2016 | 9,582        |
+| 2017 | 9,825        |
+| 2018 | 10,739        |
+| 2019 | 14,511        |
+| 2020 | 16,003        |
+| 2021 | 19,534        |
+| 2022 | 23,325        |
+| 2023 | 33,959        |
+| 2024 | 35,211        |
+| 2025 | 30,142        |
+| 2026 | 32,034 ⚠️    |
 
 O crescimento é consistente de 2016 a 2024, com leve recuo em 2025.
 
@@ -256,21 +256,21 @@ Antes de 2020, o crescimento do IGR era lento e relativamente estável:
 
 | Ano  | IGR correto | Reclamações | Variação anual |
 |------|-------------|-------------|----------------|
-| 2015 | 0,107       | 90.783      | —              |
-| 2016 | 0,096       | 79.371      | -12,6%         |
-| 2017 | 0,098       | 81.362      | +2,5%          |
-| 2018 | 0,107       | 89.877      | +10,5%         |
-| 2019 | 0,145       | 124.557     | +38,6%         |
+| 2015 | 10,739       | 90.783      | —              |
+| 2016 | 9,582       | 79.371      | -12,6%         |
+| 2017 | 9,825       | 81.362      | +2,5%          |
+| 2018 | 10,739       | 89.877      | +10,5%         |
+| 2019 | 14,511       | 124.557     | +38,6%         |
 
 A partir de 2020, o ritmo muda estruturalmente:
 
 | Ano  | IGR correto | Reclamações | Variação anual |
 |------|-------------|-------------|----------------|
-| 2020 | 0,160       | 139.635     | +12,1%         |
-| 2021 | 0,195       | 177.061     | +26,8%         |
-| 2022 | 0,233       | 220.898     | +24,8%         |
-| 2023 | 0,340       | 333.875     | +51,1%         |
-| 2024 | 0,352       | 359.162     | +7,6%          |
+| 2020 | 16,003       | 139.635     | +12,1%         |
+| 2021 | 19,534       | 177.061     | +26,8%         |
+| 2022 | 23,325       | 220.898     | +24,8%         |
+| 2023 | 33,959       | 333.875     | +51,1%         |
+| 2024 | 35,211       | 359.162     | +7,6%          |
 
 O crescimento não volta ao ritmo anterior após a pandemia.
 O sistema de saúde suplementar parece ter saído estruturalmente

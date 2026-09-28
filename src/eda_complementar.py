@@ -88,7 +88,7 @@ igr_por_ano = (
 igr_por_ano["igr_correto"] = (
     igr_por_ano["total_reclamacoes"]
     / igr_por_ano["total_beneficiarios"]
-    * 1000
+    * 100_000
 )
 
 igr_por_ano["ano_parcial"] = igr_por_ano["competencia"] == 2026
@@ -149,7 +149,7 @@ igr_por_porte = (
 igr_por_porte["igr_correto"] = (
     igr_por_porte["total_reclamacoes"]
     / igr_por_porte["total_beneficiarios"]
-    * 1000
+    * 100_000
 )
 
 igr_por_porte = igr_por_porte.sort_values(
@@ -181,7 +181,7 @@ igr_por_cobertura = (
 igr_por_cobertura["igr_correto"] = (
     igr_por_cobertura["total_reclamacoes"]
     / igr_por_cobertura["total_beneficiarios"]
-    * 1000
+    * 100_000
 )
 
 print(igr_por_cobertura.to_string(index=False))
@@ -209,7 +209,7 @@ cobertura_por_ano = (
 cobertura_por_ano["igr_correto"] = (
     cobertura_por_ano["total_reclamacoes"]
     / cobertura_por_ano["total_beneficiarios"]
-    * 1000
+    * 100_000
 )
 
 print(cobertura_por_ano.to_string(index=False))
@@ -286,7 +286,7 @@ resumo_2026 = pd.DataFrame({
         round(
             ano_2026["qtd_reclamacoes"].sum()
             / ano_2026["qtd_beneficiarios"].sum()
-            * 1000, 6
+            * 100_000, 6
         ),
         ano_2026["registro_ans"].nunique()
     ],
@@ -296,7 +296,7 @@ resumo_2026 = pd.DataFrame({
         round(
             df[df["competencia"] == 2024]["qtd_reclamacoes"].sum()
             / df[df["competencia"] == 2024]["qtd_beneficiarios"].sum()
-            * 1000, 6
+            * 100_000, 6
         ),
         df[df["competencia"] == 2024]["registro_ans"].nunique()
     ]
@@ -375,7 +375,7 @@ igr_por_operadora = (
 igr_por_operadora["igr_correto"] = (
     igr_por_operadora["total_reclamacoes"]
     / igr_por_operadora["total_beneficiarios"]
-    * 1000
+    * 100_000
 )
 
 print("\nEstatísticas descritivas do IGR por operadora:")
@@ -421,7 +421,7 @@ df_sem_2026 = df[df["competencia"] < 2026]
 igr_mercado = (
     df_sem_2026["qtd_reclamacoes"].sum()
     / df_sem_2026["qtd_beneficiarios"].sum()
-    * 1000
+    * 100_000
 )
 
 print(f"\nIGR do mercado (2015–2025): {igr_mercado:.6f}")
@@ -480,7 +480,7 @@ igr_porte_ano = (
 igr_porte_ano["igr_correto"] = (
     igr_porte_ano["total_reclamacoes"]
     / igr_porte_ano["total_beneficiarios"]
-    * 1000
+    * 100_000
 )
 
 igr_porte_ano = igr_porte_ano.sort_values(

@@ -181,16 +181,16 @@ reclamacoes_beneficiarios = (
 reclamacoes_beneficiarios["reclamacoes_por_mil_beneficiarios"] = (
     reclamacoes_beneficiarios["qtd_reclamacoes"]
     / reclamacoes_beneficiarios["qtd_beneficiarios"]
-    * 1000
+    * 100_000
 )
 
 print(reclamacoes_beneficiarios)
 
 # ==========================================================
-# 10. RECLAMAÇÕES POR MIL BENEFICIÁRIOS POR PORTE
+# 10. RECLAMAÇÕES POR 100.000 BENEFICIÁRIOS POR PORTE
 # ==========================================================
 
-print("\nRECLAMAÇÕES POR MIL BENEFICIÁRIOS POR PORTE")
+print("\nRECLAMAÇÕES POR 100.000 BENEFICIÁRIOS POR PORTE")
 
 porte_normalizado = (
     df.groupby("porte_operadora")
@@ -206,7 +206,7 @@ porte_normalizado = (
 porte_normalizado["reclamacoes_por_mil_beneficiarios"] = (
     porte_normalizado["qtd_reclamacoes"]
     / porte_normalizado["qtd_beneficiarios"]
-    * 1000
+    * 100_000
 )
 
 porte_normalizado = (
@@ -241,7 +241,7 @@ operadoras_taxa = (
 operadoras_taxa["reclamacoes_por_mil_beneficiarios"] = (
     operadoras_taxa["qtd_reclamacoes"]
     / operadoras_taxa["qtd_beneficiarios"]
-    * 1000
+    * 100_000
 )
 
 operadoras_taxa = (

@@ -86,23 +86,23 @@ operadora individualmente. Não é um campo bruto — é um campo derivado.
 A fórmula do IGR é:
 
 ```
-IGR = (QTD_RECLAMACOES / QTD_BENEFICIARIOS) × 1.000
+IGR = (QTD_RECLAMACOES / QTD_BENEFICIARIOS) × 100.000
 ```
 
 Ao calcular a média aritmética do IGR entre operadoras, ignoramos
 completamente o tamanho de cada carteira. Uma operadora com 10
 beneficiários e 1 reclamação (IGR = 100) recebe o mesmo peso que uma
 operadora com 10 milhões de beneficiários e 50 mil reclamações (IGR = 5).
-O resultado é matematicamente inválido.
+O resultado pode ser matematicamente válido como média entre operadoras, mas é inadequado como IGR agregado do mercado.
 
 **Exemplo do problema:**
 
 ```
-Operadora A: 1 reclamação / 10 beneficiários       → IGR = 100,0
-Operadora B: 2 reclamações / 10.000 beneficiários  → IGR = 0,2
+Operadora A: 1 reclamação / 10 beneficiários       → IGR = 10.000,0
+Operadora B: 2 reclamações / 10.000 beneficiários  → IGR = 20
 
-Média simples:  (100,0 + 0,2) / 2 = 50,1  ← número distorcido
-IGR correto:    3 / 10.010 × 1.000 = 0,3  ← número real
+Média simples:  (10.000,0 + 20,0) / 2 = 5.010,0  ← número distorcido
+IGR correto:    3 / 10.010 × 100.000 = 29,97  ← número real
 ```
 
 **Solução adotada:**
@@ -122,7 +122,7 @@ igr_correto = (
 igr_correto["igr"] = (
     igr_correto["total_reclamacoes"]
     / igr_correto["total_beneficiarios"]
-    * 1000
+    * 100000
 )
 ```
 
@@ -130,12 +130,12 @@ igr_correto["igr"] = (
 
 | Ano  | IGR médio simples | IGR correto |
 |------|-------------------|-------------|
-| 2015 | 91,85             | 0,107       |
-| 2018 | 25,54             | 0,107       |
-| 2019 | 130,75            | 0,145       |
-| 2021 | 175,12            | 0,195       |
-| 2022 | 357,12            | 0,233       |
-| 2024 | 141,53            | 0,352       |
+| 2015 | 91,85             | 10,739      |
+| 2018 | 25,54             | 10,657      |
+| 2019 | 130,75            | 14,511      |
+| 2021 | 175,12            | 19,534      |
+| 2022 | 357,12            | 23,325      |
+| 2024 | 141,53            | 35,211      |
 
 A tendência real é de crescimento consistente e controlado — muito
 diferente da oscilação caótica que os números incorretos sugeriam.

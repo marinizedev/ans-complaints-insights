@@ -32,6 +32,20 @@ ARQUIVO_REAL = (
 
 ANOS_PARCIAIS = [2026]
 
+# O IGR da ANS é expresso como reclamações por 100.000 beneficiários.
+# Manter a escala em uma única constante evita divergências entre as páginas.
+IGR_MULTIPLICADOR = 100_000
+IGR_UNIDADE = "por 100.000 beneficiários"
+
+
+def calcular_igr(total_reclamacoes, total_beneficiarios):
+    """Calcula o IGR agregado na escala oficial da ANS."""
+    return (
+        total_reclamacoes
+        / total_beneficiarios
+        * IGR_MULTIPLICADOR
+    )
+
 
 # ==================================================================
 # GARANTIA DE REPRODUTIBILIDADE (FALLBACK GIT LFS)
@@ -83,7 +97,7 @@ def assegurar_arquivo_processado() -> Path:
             )
 
     return ARQUIVO_REAL
-IGR_MERCADO   = 0.201619
+IGR_MERCADO   = 20.1619  # mercado acumulado de 2015 a 2025
 ANO_PANDEMIA  = 2020
 
 CORES = {
@@ -151,10 +165,9 @@ def igr_por_ano(df: pd.DataFrame) -> pd.DataFrame:
         )
         .reset_index()
     )
-    resultado["igr_correto"] = (
-        resultado["total_reclamacoes"]
-        / resultado["total_beneficiarios"]
-        * 1000
+    resultado["igr_correto"] = calcular_igr(
+        resultado["total_reclamacoes"],
+        resultado["total_beneficiarios"]
     )
     resultado["variacao_pct"] = (
         resultado["total_reclamacoes"].pct_change() * 100
@@ -178,10 +191,9 @@ def igr_por_porte(df: pd.DataFrame) -> pd.DataFrame:
         )
         .reset_index()
     )
-    resultado["igr_correto"] = (
-        resultado["total_reclamacoes"]
-        / resultado["total_beneficiarios"]
-        * 1000
+    resultado["igr_correto"] = calcular_igr(
+        resultado["total_reclamacoes"],
+        resultado["total_beneficiarios"]
     )
     resultado["pct_registros"] = (
         resultado["registros"] / total_registros * 100
@@ -209,10 +221,9 @@ def igr_porte_por_ano(df: pd.DataFrame) -> pd.DataFrame:
         )
         .reset_index()
     )
-    resultado["igr_correto"] = (
-        resultado["total_reclamacoes"]
-        / resultado["total_beneficiarios"]
-        * 1000
+    resultado["igr_correto"] = calcular_igr(
+        resultado["total_reclamacoes"],
+        resultado["total_beneficiarios"]
     )
     return resultado.sort_values(["competencia", "porte_operadora"])
 
@@ -229,10 +240,9 @@ def igr_por_cobertura(df: pd.DataFrame) -> pd.DataFrame:
         )
         .reset_index()
     )
-    resultado["igr_correto"] = (
-        resultado["total_reclamacoes"]
-        / resultado["total_beneficiarios"]
-        * 1000
+    resultado["igr_correto"] = calcular_igr(
+        resultado["total_reclamacoes"],
+        resultado["total_beneficiarios"]
     )
     resultado["percentual"] = (
         resultado["total_reclamacoes"] / total * 100
@@ -257,10 +267,9 @@ def cobertura_por_ano(df: pd.DataFrame) -> pd.DataFrame:
         )
         .reset_index()
     )
-    resultado["igr_correto"] = (
-        resultado["total_reclamacoes"]
-        / resultado["total_beneficiarios"]
-        * 1000
+    resultado["igr_correto"] = calcular_igr(
+        resultado["total_reclamacoes"],
+        resultado["total_beneficiarios"]
     )
     resultado = resultado.merge(total_por_ano, on="competencia")
     resultado["percentual"] = (
@@ -283,10 +292,9 @@ def ranking_operadoras(
         )
         .reset_index()
     )
-    resultado["igr_correto"] = (
-        resultado["total_reclamacoes"]
-        / resultado["total_beneficiarios"]
-        * 1000
+    resultado["igr_correto"] = calcular_igr(
+        resultado["total_reclamacoes"],
+        resultado["total_beneficiarios"]
     )
     resultado["vs_mercado"] = (
         resultado["igr_correto"] / IGR_MERCADO
@@ -311,10 +319,9 @@ def top_por_volume(df: pd.DataFrame, n: int = 10) -> pd.DataFrame:
         )
         .reset_index()
     )
-    resultado["igr_correto"] = (
-        resultado["total_reclamacoes"]
-        / resultado["total_beneficiarios"]
-        * 1000
+    resultado["igr_correto"] = calcular_igr(
+        resultado["total_reclamacoes"],
+        resultado["total_beneficiarios"]
     )
     resultado["vs_mercado"] = (
         resultado["igr_correto"] / IGR_MERCADO
@@ -341,10 +348,9 @@ def operadoras_falidas(df: pd.DataFrame) -> pd.DataFrame:
         )
         .reset_index()
     )
-    resultado["igr_correto"] = (
-        resultado["total_reclamacoes"]
-        / resultado["total_beneficiarios"]
-        * 1000
+    resultado["igr_correto"] = calcular_igr(
+        resultado["total_reclamacoes"],
+        resultado["total_beneficiarios"]
     )
     return resultado.sort_values(
         "total_reclamacoes", ascending=False

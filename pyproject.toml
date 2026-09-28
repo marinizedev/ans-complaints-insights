@@ -1,0 +1,9 @@
+[project]
+name = "ans-complaints-insights"
+version = "0.1.0"
+description = "Data storytelling sobre reclamações de planos de saúde no Brasil"
+requires-python = ">=3.11,<3.14"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

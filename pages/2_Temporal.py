@@ -54,7 +54,7 @@ fig.add_annotation(
     borderwidth=1, borderpad=5, xanchor="left"
 )
 apply_layout(fig, height=320,
-             yaxis=dict(title=dict(text="IGR por mil beneficiários",
+             yaxis=dict(title=dict(text="IGR por 100.000 beneficiários",
                                    font=dict(size=12, color="#7070a0")),
                         tickfont=dict(size=12, color="#9090b8"),
                         gridcolor="#252540", zeroline=False),
@@ -67,7 +67,7 @@ st.markdown(
         "O IGR cresceu <strong>+228%</strong> entre 2015 e 2024. "
         "O ponto de inflexão observado nos dados é 2020 — a partir daí, "
         "a curva muda de inclinação e não retorna ao ritmo anterior. "
-        "O recuo de 2025 (0,301) é o primeiro desde 2016, "
+        "O recuo de 2025 (30,142) é o primeiro desde 2016, "
         "mas o nível permanece <strong>3× acima</strong> do início da série. "
         "<em>Os dados indicam uma mudança estrutural a partir de 2020, "
         "possivelmente associada à pandemia. Essa associação é uma hipótese "
@@ -173,7 +173,7 @@ st.plotly_chart(fig3, use_container_width=True)
 st.markdown(
     insight_box(
         "Em 2026, pela <strong>primeira vez na série histórica</strong>, "
-        "o porte médio (IGR 0,358) superou o grande porte (IGR 0,319). "
+        "o porte médio (IGR 35,823) superou o grande porte (IGR 31,859). "
         "⚠️ 2026 é ano parcial — esse comportamento requer acompanhamento "
         "ao longo do ano para confirmação da tendência."
     ),
@@ -218,6 +218,6 @@ apply_layout(fig4, height=320,
                         gridcolor="#252540", zeroline=False))
 st.plotly_chart(fig4, use_container_width=True)
 st.markdown(
-    footnote("IGR médica chegou a 0,573 em 2024 — 27× maior que odontológica."),
+    footnote("IGR médica chegou a 57,3 em 2024 — 27× maior que odontológica."),
     unsafe_allow_html=True
 )

@@ -174,7 +174,7 @@ fig_igr.update_layout(
         gridcolor="#1e1e2e",
         zeroline=False,
         title=dict(
-            text="reclamações por mil beneficiários",
+            text="reclamações por 100.000 beneficiários",
             font=dict(size=11, color="#444")
         )
     ),
@@ -242,7 +242,7 @@ st.dataframe(
 st.markdown(
     footnote(
         "IGR calculado pelo método correto: "
-        "soma(reclamações) / soma(beneficiários) × 1.000. "
+        "soma(reclamações) / soma(beneficiários) × 100.000. "
         "Razão de concentração = % reclamações / % registros."
     ),
     unsafe_allow_html=True

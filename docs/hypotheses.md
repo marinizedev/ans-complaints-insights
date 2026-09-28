@@ -18,13 +18,13 @@ em processo de falência, liquidação ou insolvência:
 
 | Operadora                        | IGR correto |
 |----------------------------------|-------------|
-| Viva Planos (Massa Falida)       | 12,858      |
-| Medical Brasil (Massa Falida)    | 10,549      |
-| Minas Center Med (Massa Falida)  | 9,578       |
-| Salutar (Massa Falida)           | 7,902       |
-| SOSaúde (Massa Falida)           | 4,983       |
+| Viva Planos (Massa Falida)       | 1.285,848      |
+| Medical Brasil (Massa Falida)    | 1.054,907      |
+| Minas Center Med (Massa Falida)  | 957,793       |
+| Salutar (Massa Falida)           | 790,167       |
+| SOSaúde (Massa Falida)           | 498,348       |
 
-68 operadoras identificadas nessa situação. Mais de 3.000 registros
+71 registros de operadoras identificadas nessa situação. Mais de 3.000 registros
 associados ao longo da série histórica.
 
 ---
@@ -35,14 +35,14 @@ associados ao longo da série histórica.
 
 ### Evidências
 
-A Prevent Senior Corporate apresenta IGR correto de **13,213** —
+A Prevent Senior Corporate apresenta IGR correto de **1.321,330** —
 o maior entre todas as operadoras ativas (não em processo de
 falência ou liquidação).
 
 Para contexto:
 
-- IGR de mercado (2015–2025): **0,2016**
-- IGR da Prevent Senior: **13,213**
+- IGR de mercado (2015–2025): **20,1619**
+- IGR da Prevent Senior: **1.321,330**
 - Relação: **65 vezes acima do mercado**
 
 Nenhuma outra operadora ativa de porte relevante se aproxima
@@ -60,7 +60,7 @@ desse número. O comportamento é genuinamente atípico.
 |---------------------------------|---------|-----------|-------------|
 | Beneficiários                   | 845 mi  | 1,02 bi   | +21%        |
 | Reclamações                     | 90.783  | 359.162   | +296%       |
-| IGR correto (por mil benef.)    | 0,107   | 0,352     | +228%       |
+| IGR correto (por 100.000 benef.)    | 10,739   | 35,211     | +228%       |
 
 O crescimento das reclamações foi **14 vezes maior** que o crescimento
 da base de beneficiários no período.
@@ -80,9 +80,9 @@ IGR correto por porte (acumulado 2015–2026):
 
 | Porte   | IGR correto |
 |---------|-------------|
-| Grande  | 0,223       |
-| Médio   | 0,159       |
-| Pequeno | 0,134       |
+| Grande  | 22,332       |
+| Médio   | 15,887       |
+| Pequeno | 13,441       |
 
 Razão de concentração (% reclamações / % registros na base):
 
@@ -97,8 +97,8 @@ mas concentra mais de 82% de todas as reclamações.
 
 ### Ressalva — 2026
 
-Em 2026 (ano parcial), o porte médio registrou IGR de **0,358**,
-superando o grande porte (**0,319**) pela primeira vez na série.
+Em 2026 (ano parcial), o porte médio registrou IGR de **35,823**,
+superando o grande porte (**31,859**) pela primeira vez na série.
 Esse comportamento merece acompanhamento.
 
 ---
@@ -111,8 +111,8 @@ Esse comportamento merece acompanhamento.
 
 | Cobertura          | Reclamações | Participação | IGR correto |
 |--------------------|-------------|--------------|-------------|
-| Assistência médica | 2.112.387   | 98,07%       | 0,313       |
-| Odontológica       | 41.635      | 1,93%        | 0,011       |
+| Assistência médica | 2.112.387   | 98,07%       | 31,293       |
+| Odontológica       | 41.635      | 1,93%        | 1,134       |
 
 A diferença de IGR entre os dois tipos de cobertura é de **27 vezes**.
 
@@ -135,10 +135,10 @@ frente ao mercado varia drasticamente:
 
 | Operadora              | IGR correto | vs mercado |
 |------------------------|-------------|------------|
-| Odontoprev             | 0,013       | 0,07×      |
-| Hapvida                | 0,184       | 0,91×      |
-| Bradesco Saúde         | 0,437       | 2,17×      |
-| Unimed Nacional        | 0,425       | 2,11×      |
+| Odontoprev             | 1,300       | 0,07×      |
+| Hapvida                | 18,426       | 0,91×      |
+| Bradesco Saúde         | 43,700       | 2,17×      |
+| Unimed Nacional        | 42,500       | 2,11×      |
 
 Operadoras com carteiras comparáveis apresentam comportamentos
 completamente distintos. O tamanho da carteira não explica sozinho
@@ -152,7 +152,7 @@ o resultado.
 
 ### Evidências
 
-- 68 operadoras identificadas em situação de falência ou liquidação.
+- 71 operadoras identificadas em situação de falência ou liquidação.
 - Presença recorrente ao longo de vários anos da série histórica.
 - Reclamações de operadoras falidas: pico em 2015 (13.964) e 2019 (10.242),
   com queda gradual até 2026 (94 registros).
@@ -171,9 +171,9 @@ O impacto, entretanto, foi relevante especialmente entre 2015 e 2019.
 
 | Porte   | IGR 2024 | IGR 2025 | IGR 2026 |
 |---------|----------|----------|----------|
-| Grande  | 0,370    | 0,311    | 0,319    |
-| Médio   | 0,293    | 0,271    | **0,358**|
-| Pequeno | 0,240    | 0,221    | 0,234    |
+| Grande  | 36,952    | 31,108    | 31,859    |
+| Médio   | 29,348    | 27,143    | **35,823**|
+| Pequeno | 23,967    | 22,116    | 23,361    |
 
 Pela primeira vez na série histórica, o porte médio registrou IGR
 superior ao grande porte.

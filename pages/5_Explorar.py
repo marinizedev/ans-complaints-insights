@@ -6,7 +6,7 @@
 import streamlit as st
 import plotly.graph_objects as go
 from app.styles import inject_css, eyebrow, footnote, apply_layout
-from app.data_loader import carregar_dados, CORES, IGR_MERCADO
+from app.data_loader import carregar_dados, calcular_igr, CORES, IGR_MERCADO
 
 st.set_page_config(
     page_title="Explorar · ANS Insights", page_icon="🎛️", layout="wide"
@@ -83,7 +83,7 @@ st.markdown("---")
 
 total_rec   = df["qtd_reclamacoes"].sum()
 total_benef = df["qtd_beneficiarios"].sum()
-igr_sel     = total_rec / total_benef * 1000 if total_benef > 0 else 0
+igr_sel     = calcular_igr(total_rec, total_benef) if total_benef > 0 else 0
 ops_unicas  = df["registro_ans"].nunique()
 
 col1, col2, col3, col4 = st.columns(4)
@@ -115,10 +115,9 @@ operadoras_df = (
     )
     .reset_index()
 )
-operadoras_df["igr_correto"] = (
-    operadoras_df["total_reclamacoes"]
-    / operadoras_df["total_beneficiarios"]
-    * 1000
+operadoras_df["igr_correto"] = calcular_igr(
+    operadoras_df["total_reclamacoes"],
+    operadoras_df["total_beneficiarios"]
 )
 operadoras_df["vs_mercado"] = (
     operadoras_df["igr_correto"] / IGR_MERCADO
