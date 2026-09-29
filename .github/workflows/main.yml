@@ -33,6 +33,10 @@ jobs:
         export PYTHONPATH="${PYTHONPATH}:."
         pytest tests/
 
+    - name: Validar imagem Docker
+      run: |
+        docker build --tag ans-complaints-insights:ci .
+
   cd:
     name: Continuous Deployment (CD)
     runs-on: ubuntu-latest
@@ -52,27 +56,6 @@ jobs:
 
     - name: Fazer Deploy para o Hugging Face Spaces via Git Push
       run: |
-        set -e
-
         git remote remove space 2>/dev/null || true
         git remote add space https://marinizeeng:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/marinizeeng/ans-complaints-insights
-
-        # Garante que arquivos grandes/binários usem o filtro configurado
-        git lfs install
-
-        # Cria uma árvore de deploy sem o histórico do GitHub,
-        # evitando enviar versões antigas dos PNGs como binários comuns.
-        git checkout --orphan hf-deploy
-
-        # Remove o índice herdado, mas preserva os arquivos no diretório de trabalho.
-        git rm -rf --cached . 2>/dev/null || true
-
-        # Reindexa os arquivos usando .gitattributes e Git LFS.
-        git add -A
-
-        git config user.email "actions@github.com"
-        git config user.name "GitHub Actions"
-        git commit -m "deploy: ${GITHUB_SHA}"
-
-        # Publica somente a árvore atual no Space.
-        git push --force space hf-deploy:main
+        git push --force space HEAD:main

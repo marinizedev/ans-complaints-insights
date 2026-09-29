@@ -1,0 +1,9 @@
+services:
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:7860"
+    environment:
+      STREAMLIT_BROWSER_GATHER_USAGE_STATS: "false"

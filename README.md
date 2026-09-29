@@ -75,19 +75,19 @@ Durante o desenvolvimento foi identificada e corrigida uma inconsistência impor
 
 ### Página Inicial
 
-![Home](images/home.png)
+![Home](https://private-us-east-1.manuscdn.com/sessionFile/UBGsxQ0ggPDaW9JQtDLpfC/sandbox/HtwKkcZTBpsx7bSTULJeyj-images_1790690212748_na1fn_L2hvbWUvdWJ1bnR1L2Fucy1jb21wbGFpbnRzLXJldmlldy9yZXBvL2ltYWdlcy9ob21l.png?Expires=1790863016&Signature=MEUCIAbSL8y0po~x0rTEZzFsWX5wbjJCxelPkLNzgE8CntCDAiEAzcpYQ~Y8Cvl0jUEZzkE2naPiNImNRXzmQwCs-kbdJnc_&Key-Pair-Id=K1K5N5YNBUUMMN)
 
 ### Visão Geral — métricas e panorama do período
 
-![Visão Geral](images/visao_geral.png)
+![Visão Geral](https://private-us-east-1.manuscdn.com/sessionFile/UBGsxQ0ggPDaW9JQtDLpfC/sandbox/HtwKkcZTBpsx7bSTULJeyj-images_1790690212748_na1fn_L2hvbWUvdWJ1bnR1L2Fucy1jb21wbGFpbnRzLXJldmlldy9yZXBvL2ltYWdlcy92aXNhb19nZXJhbA.png?Expires=1790863016&Signature=MEUCICsabztz87pqclNou-vrsBI5garFWhB3~SAwEohTR7OdAiEAkfjWnIKfsCOkc8w7ZJyMBumMGl9Ueodbgy--dH4ZsiM_&Key-Pair-Id=K1K5N5YNBUUMMN)
 
 ### Temporal — o marco da pandemia de 2020
 
-![Temporal](images/temporal.png)
+![Temporal](https://private-us-east-1.manuscdn.com/sessionFile/UBGsxQ0ggPDaW9JQtDLpfC/sandbox/HtwKkcZTBpsx7bSTULJeyj-images_1790690212748_na1fn_L2hvbWUvdWJ1bnR1L2Fucy1jb21wbGFpbnRzLXJldmlldy9yZXBvL2ltYWdlcy90ZW1wb3JhbA.png?Expires=1790863016&Signature=MEUCIQDXbLOy2dBZnBXgF0P4DhuhRzDSqIm2l569LFggqcVe4wIgQagn2uhm5xmyc05bKTCycfZxdH0F~AjHKr46fXU818E_&Key-Pair-Id=K1K5N5YNBUUMMN)
 
 ### Operadoras — rankings e outliers
 
-![Operadoras](images/operadoras.png)
+![Operadoras](https://private-us-east-1.manuscdn.com/sessionFile/UBGsxQ0ggPDaW9JQtDLpfC/sandbox/HtwKkcZTBpsx7bSTULJeyj-images_1790690212748_na1fn_L2hvbWUvdWJ1bnR1L2Fucy1jb21wbGFpbnRzLXJldmlldy9yZXBvL2ltYWdlcy9vcGVyYWRvcmFz.png?Expires=1790863016&Signature=MEUCIAzGCXO9p3AiAY1b77jAIG4jGqJbU6j93Zl~OLwcqF7RAiEAlPhLjoXrUlwofP9N-fX20okZ6O5qNkdSBSJr05vh00I_&Key-Pair-Id=K1K5N5YNBUUMMN)
 
 ---
 
@@ -125,7 +125,7 @@ Pela primeira vez na série, o porte médio (IGR 35,823) superou o grande porte 
 
 ## 🔄 Fluxo Analítico
 
-![fluxo](images/fluxo_analitico.png)
+![fluxo](https://private-us-east-1.manuscdn.com/sessionFile/UBGsxQ0ggPDaW9JQtDLpfC/sandbox/HtwKkcZTBpsx7bSTULJeyj-images_1790690212748_na1fn_L2hvbWUvdWJ1bnR1L2Fucy1jb21wbGFpbnRzLXJldmlldy9yZXBvL2ltYWdlcy9mbHV4b19hbmFsaXRpY28.png?Expires=1790863016&Signature=MEQCIFvNKcoQXrBwcadI5TZ8dsGVdRLiycSLpOKpOHh93dDjAiB47jtPjTGwxB4ZgSYWKtLRB9T-tMgt6y9BUaR8O03jLQ__&Key-Pair-Id=K1K5N5YNBUUMMN)
 
 ---
 
@@ -246,6 +246,33 @@ streamlit run main.py
 
 > **Observação:** o projeto utiliza Git LFS para versionamento eficiente da base processada. Caso o repositório seja clonado sem suporte ao Git LFS, o mecanismo de fallback implementado no projeto realiza automaticamente a obtenção do dataset necessário para execução da aplicação e dos testes.
 
+### Executar com Docker
+
+Com Docker Desktop instalado, a aplicação pode ser executada em um ambiente
+reprodutível, sem criar um ambiente virtual Python local:
+
+```bash
+docker build -t ans-complaints-insights .
+docker run --rm -p 8501:7860 ans-complaints-insights
+```
+
+Acesse `http://localhost:8501` no navegador.
+
+Também é possível usar Docker Compose:
+
+```bash
+docker compose up --build
+```
+
+Para encerrar:
+
+```bash
+docker compose down
+```
+
+O container escuta internamente na porta `7860`, compatível com o padrão de
+aplicações Docker no Hugging Face Spaces.
+
 ---
 
 ## 🧪 Testes
@@ -272,7 +299,9 @@ A cada push ou pull request:
 
 - execução da suíte de testes com `pytest`;
 
-- validação das regras de negócio da aplicação.
+- validação das regras de negócio da aplicação;
+
+- construção da imagem Docker para validar a containerização.
 
 ### Continuous Deployment (CD)
 
@@ -312,6 +341,7 @@ Durante o pipeline, o GitHub Actions realiza normalmente o checkout do repositó
 | Testes | pytest 8.3 |
 | CI/CD | GitHub Actions |
 | Deploy | Hugging Face Spaces |
+| Containerização | Docker / Docker Compose |
 | Controle de versão | Git |
 | Armazenamento de arquivos grandes | Git LFS |
 
