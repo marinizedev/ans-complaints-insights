@@ -19,7 +19,7 @@ pinned: false
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.45-FF4B4B?logo=streamlit&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-2.2-150458?logo=pandas&logoColor=white)
 ![Plotly](https://img.shields.io/badge/Plotly-5.24-3F4F75?logo=plotly&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Container-2496ED?logo=docker&logoColor=white )
+![Docker](https://img.shields.io/badge/Docker-Container-2496ED?logo=docker&logoColor=white)
 ![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97_Hugging_Face-Space-FFD21E)
 ![License](https://img.shields.io/badge/Licen%C3%A7a-MIT-2dd4a0)
 
@@ -37,7 +37,7 @@ Este projeto nasceu de uma pergunta simples:
 
 A resposta emerge da análise dos dados.
 
-Entre 2015 e 2024, a base de beneficiários cresceu **21%**. As reclamações cresceram **296%**. E a pandemia de 2020 foi o **ponto de inflexão** que mudou a trajetória do setor de forma estrutural — sem retorno ao ritmo anterior.
+Entre 2015 e 2024, a base de beneficiários cresceu **21%**. As reclamações cresceram **296%**. Os dados mostram uma mudança de padrão a partir de 2020, período que coincide com a pandemia — sem retorno ao ritmo anterior. Essa associação é uma hipótese exploratória, não uma relação causal comprovada.
 
 O projeto percorre todo o ciclo analítico: da coleta e processamento dos dados brutos da ANS até a construção de um dashboard interativo de Data Storytelling, passando por análise exploratória aprofundada, correção de metodologia de cálculo do IGR, descoberta de insights e documentação rigorosa de todas as hipóteses investigadas.
 
@@ -67,7 +67,7 @@ Além da construção do dashboard, o projeto contempla todas as etapas de um fl
 
 - integração e deploy contínuos (CI/CD).
 
-Durante o desenvolvimento foi identificada e corrigida uma inconsistência importante na forma de calcular o IGR médio, garantindo que todas as análises utilizassem a metodologia estatisticamente correta.
+Durante o desenvolvimento foi identificada e corrigida uma inconsistência importante na forma de calcular o IGR agregado, garantindo que todas as análises utilizassem a metodologia adequada para a comparação entre carteiras de tamanhos diferentes.
 
 ---
 
@@ -75,27 +75,27 @@ Durante o desenvolvimento foi identificada e corrigida uma inconsistência impor
 
 ### Página Inicial
 
-![Home](https://private-us-east-1.manuscdn.com/sessionFile/UBGsxQ0ggPDaW9JQtDLpfC/sandbox/HtwKkcZTBpsx7bSTULJeyj-images_1790690212748_na1fn_L2hvbWUvdWJ1bnR1L2Fucy1jb21wbGFpbnRzLXJldmlldy9yZXBvL2ltYWdlcy9ob21l.png?Expires=1790863016&Signature=MEUCIAbSL8y0po~x0rTEZzFsWX5wbjJCxelPkLNzgE8CntCDAiEAzcpYQ~Y8Cvl0jUEZzkE2naPiNImNRXzmQwCs-kbdJnc_&Key-Pair-Id=K1K5N5YNBUUMMN)
+![Home](https://private-us-east-1.manuscdn.com/sessionFile/UBGsxQ0ggPDaW9JQtDLpfC/sandbox/X6fUXQSOKxokzWPx9Ge080-images_1790702876444_na1fn_L2hvbWUvdWJ1bnR1L2Fucy1jb21wbGFpbnRzLXJldmlldy9yZXBvL2ltYWdlcy9ob21l.png?Expires=1790875678&Signature=MEQCIFmJk5zc2hajS-uBwHBLjo1rV1ZQ-qdkGIWjbcVwausuAiB3ZrdnCZIXDVtEbt~VAtYqReVaWQCbD8WM5lAAIZ7r4w__&Key-Pair-Id=K1K5N5YNBUUMMN)
 
 ### Visão Geral — métricas e panorama do período
 
-![Visão Geral](https://private-us-east-1.manuscdn.com/sessionFile/UBGsxQ0ggPDaW9JQtDLpfC/sandbox/HtwKkcZTBpsx7bSTULJeyj-images_1790690212748_na1fn_L2hvbWUvdWJ1bnR1L2Fucy1jb21wbGFpbnRzLXJldmlldy9yZXBvL2ltYWdlcy92aXNhb19nZXJhbA.png?Expires=1790863016&Signature=MEUCICsabztz87pqclNou-vrsBI5garFWhB3~SAwEohTR7OdAiEAkfjWnIKfsCOkc8w7ZJyMBumMGl9Ueodbgy--dH4ZsiM_&Key-Pair-Id=K1K5N5YNBUUMMN)
+![Visão Geral](https://private-us-east-1.manuscdn.com/sessionFile/UBGsxQ0ggPDaW9JQtDLpfC/sandbox/X6fUXQSOKxokzWPx9Ge080-images_1790702876444_na1fn_L2hvbWUvdWJ1bnR1L2Fucy1jb21wbGFpbnRzLXJldmlldy9yZXBvL2ltYWdlcy92aXNhb19nZXJhbA.png?Expires=1790875678&Signature=MEYCIQC1TRfwQaKzPCxEdHfL9Q5ju12O5Fdss7tpV0cKe6YoWwIhAM7acxD2Macu4p6hwe9ehai-BePIPbL0ldrGZpnIb1AQ&Key-Pair-Id=K1K5N5YNBUUMMN)
 
 ### Temporal — o marco da pandemia de 2020
 
-![Temporal](https://private-us-east-1.manuscdn.com/sessionFile/UBGsxQ0ggPDaW9JQtDLpfC/sandbox/HtwKkcZTBpsx7bSTULJeyj-images_1790690212748_na1fn_L2hvbWUvdWJ1bnR1L2Fucy1jb21wbGFpbnRzLXJldmlldy9yZXBvL2ltYWdlcy90ZW1wb3JhbA.png?Expires=1790863016&Signature=MEUCIQDXbLOy2dBZnBXgF0P4DhuhRzDSqIm2l569LFggqcVe4wIgQagn2uhm5xmyc05bKTCycfZxdH0F~AjHKr46fXU818E_&Key-Pair-Id=K1K5N5YNBUUMMN)
+![Temporal](https://private-us-east-1.manuscdn.com/sessionFile/UBGsxQ0ggPDaW9JQtDLpfC/sandbox/X6fUXQSOKxokzWPx9Ge080-images_1790702876444_na1fn_L2hvbWUvdWJ1bnR1L2Fucy1jb21wbGFpbnRzLXJldmlldy9yZXBvL2ltYWdlcy90ZW1wb3JhbA.png?Expires=1790875678&Signature=MEUCIQDE1Hg34pHcPj8t43F3B1VO50FVS11Voad7y-4qQ7EPHgIgbxqXnYhUWgUH8QzzrZXYL4oLtyt3bLxO3F7og72~dSQ_&Key-Pair-Id=K1K5N5YNBUUMMN)
 
 ### Operadoras — rankings e outliers
 
-![Operadoras](https://private-us-east-1.manuscdn.com/sessionFile/UBGsxQ0ggPDaW9JQtDLpfC/sandbox/HtwKkcZTBpsx7bSTULJeyj-images_1790690212748_na1fn_L2hvbWUvdWJ1bnR1L2Fucy1jb21wbGFpbnRzLXJldmlldy9yZXBvL2ltYWdlcy9vcGVyYWRvcmFz.png?Expires=1790863016&Signature=MEUCIAzGCXO9p3AiAY1b77jAIG4jGqJbU6j93Zl~OLwcqF7RAiEAlPhLjoXrUlwofP9N-fX20okZ6O5qNkdSBSJr05vh00I_&Key-Pair-Id=K1K5N5YNBUUMMN)
+![Operadoras](https://private-us-east-1.manuscdn.com/sessionFile/UBGsxQ0ggPDaW9JQtDLpfC/sandbox/X6fUXQSOKxokzWPx9Ge080-images_1790702876444_na1fn_L2hvbWUvdWJ1bnR1L2Fucy1jb21wbGFpbnRzLXJldmlldy9yZXBvL2ltYWdlcy9vcGVyYWRvcmFz.png?Expires=1790875678&Signature=MEUCIQCxpaVSK~E9e9as4MgbbOd14UE7P2tgFUNlzxyYkr9QywIgFrk0Dht6Y~RjLVnJDBlvOD04~jeFdE3jw~Nueuf2N7o_&Key-Pair-Id=K1K5N5YNBUUMMN)
 
 ---
 
 ## 🔍 Principais Descobertas
 
-### 📌 A pandemia como ponto de inflexão estrutural
+### 📌 Mudança de padrão a partir de 2020
 
-Antes de 2020, o crescimento das reclamações era lento e irregular. A partir de 2020, a curva muda de inclinação e **não retorna ao ritmo anterior** — sugerindo que o sistema de saúde suplementar saiu estruturalmente fragilizado do período pandêmico.
+Antes de 2020, o crescimento das reclamações era lento e irregular. A partir de 2020, a curva muda de inclinação e **não retorna ao ritmo anterior**. Os dados sugerem uma mudança de padrão, mas não permitem afirmar que a pandemia foi sua causa.
 
 ### 📌 Grande porte concentra desproporcionalmente
 
@@ -107,7 +107,7 @@ A correlação entre quantidade de beneficiários e reclamações é moderada (*
 
 ### 📌 Assistência médica vs odontológica
 
-O IGR da assistência médica é **27 vezes** maior que o da cobertura exclusivamente odontológica — proporção que se manteve estável ao longo de toda a série histórica.
+O IGR da assistência médica é **27 vezes** maior que o da cobertura exclusivamente odontológica no recorte de 2024. A diferença observada é um padrão descritivo da base, não uma explicação causal.
 
 ### 📌 Prevent Senior — outlier entre operadoras ativas
 
@@ -125,7 +125,7 @@ Pela primeira vez na série, o porte médio (IGR 35,823) superou o grande porte 
 
 ## 🔄 Fluxo Analítico
 
-![fluxo](https://private-us-east-1.manuscdn.com/sessionFile/UBGsxQ0ggPDaW9JQtDLpfC/sandbox/HtwKkcZTBpsx7bSTULJeyj-images_1790690212748_na1fn_L2hvbWUvdWJ1bnR1L2Fucy1jb21wbGFpbnRzLXJldmlldy9yZXBvL2ltYWdlcy9mbHV4b19hbmFsaXRpY28.png?Expires=1790863016&Signature=MEQCIFvNKcoQXrBwcadI5TZ8dsGVdRLiycSLpOKpOHh93dDjAiB47jtPjTGwxB4ZgSYWKtLRB9T-tMgt6y9BUaR8O03jLQ__&Key-Pair-Id=K1K5N5YNBUUMMN)
+![fluxo](https://private-us-east-1.manuscdn.com/sessionFile/UBGsxQ0ggPDaW9JQtDLpfC/sandbox/X6fUXQSOKxokzWPx9Ge080-images_1790702876444_na1fn_L2hvbWUvdWJ1bnR1L2Fucy1jb21wbGFpbnRzLXJldmlldy9yZXBvL2ltYWdlcy9mbHV4b19hbmFsaXRpY28.png?Expires=1790875678&Signature=MEUCIEcENM6SdYhQNUXAdMGxz-m~i40bTG6Be~ESJs4ipcIMAiEAnMQPp6pZAnfuMEJ5t8lGTZo~-Z~Xo4oD-iS1AXYLu7g_&Key-Pair-Id=K1K5N5YNBUUMMN)
 
 ---
 
@@ -165,7 +165,7 @@ igr_correto["igr"] = (
 
 **Fórmula do IGR:** `IGR = (QTD_RECLAMACOES / QTD_BENEFICIARIOS) × 100.000`
 
-> **Revisão posterior:** a ponderação pela carteira foi mantida, mas a unidade oficial da ANS foi corrigida de “por 1.000” para “por 100.000 beneficiários”. O dicionário da ANS descreve `COMPETENCIA` e `COMPETENCIA_BENEFICIARIO` como ano-mês, mas o arquivo efetivamente recebido contém apenas o ano. A base apresenta múltiplas observações aparentemente mensais, sem o mês explícito; não há evidência de que essa informação tenha sido removida pelo ETL. Consulte a [nota metodológica da revisão](docs/revisao_metodologica_2026.md).
+> **Revisão posterior:** a ponderação pela carteira foi mantida, mas o cálculo do projeto foi alinhado à unidade oficial de “por 100.000 beneficiários”, em vez da escala “por 1.000” usada anteriormente no projeto. O dicionário da ANS descreve `COMPETENCIA` e `COMPETENCIA_BENEFICIARIO` como ano-mês, mas o arquivo efetivamente recebido contém apenas o ano. A base apresenta múltiplas observações compatíveis com periodicidade mensal, sem o mês explícito; não há evidência de que essa informação tenha sido removida pelo ETL. Consulte a [nota metodológica da revisão](docs/revisao_metodologica_2026.md).
 
 ---
 
@@ -173,6 +173,17 @@ igr_correto["igr"] = (
 
 ```
 ans-complaints-insights/
+│
+├── .github/
+│   └── workflows/
+│       └── main.yml              # CI/CD: testes, build Docker e deploy
+│
+├── .dockerignore                 # Arquivos excluídos do contexto Docker
+├── .gitattributes                # Regras de Git LFS para dados e imagens
+├── .gitignore                    # Ambientes, caches e arquivos locais
+├── Dockerfile                    # Imagem de produção do dashboard
+├── docker-compose.yml            # Execução local reproduzível
+├── pyproject.toml                # Metadados e faixa de Python suportada
 │
 ├── app/                          # Módulo do dashboard
 │   ├── __init__.py
@@ -187,6 +198,7 @@ ans-complaints-insights/
 ├── docs/                         # Documentação analítica completa
 │   ├── data_understanding_report.md
 │   ├── investigacao_inicial.md
+│   ├── revisao_metodologica_2026.md
 │   ├── insights_iniciais.md
 │   ├── hypotheses.md
 │   └── perguntas_negocio.md
@@ -209,12 +221,10 @@ ans-complaints-insights/
 ├── tests/
 │   └── test_dados.py             # Testes de regras de negócio
 │
-├── .github/
-│   └── workflows/
-│       └── main.yml              # Pipeline CI/CD — pytest automático
-│
 ├── main.py                       # Ponto de entrada do Streamlit
-└── requirements.txt
+├── requirements.txt               # Dependências da aplicação e testes
+├── README.md                      # Documentação, execução e arquitetura
+└── LICENSE
 ```
 
 ---
@@ -307,7 +317,7 @@ A cada push ou pull request:
 
 Após a conclusão bem-sucedida do estágio de CI na branch `main`, o deploy é realizado automaticamente para o Hugging Face Spaces.
 
-O pipeline utiliza autenticação segura via GitHub Secrets (`HF_TOKEN`) e sincroniza o código diretamente com o repositório remoto do Space por meio de um `git push` automatizado.
+O pipeline utiliza autenticação segura via GitHub Secrets (`HF_TOKEN`) e sincroniza o código diretamente com o repositório remoto do Space por meio de um `git push` automatizado. O Hugging Face identifica `sdk: docker` no README, constrói o `Dockerfile` e executa o container na porta `7860`.
 
 Essa estratégia simplifica o processo de deploy e reduz a dependência de Actions específicas do Hugging Face, tornando o pipeline mais transparente e fácil de manter.
 
