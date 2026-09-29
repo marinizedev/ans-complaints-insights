@@ -8,7 +8,8 @@ import plotly.graph_objects as go
 from app.styles import inject_css, eyebrow, insight_box, footnote, apply_layout
 from app.data_loader import (
     carregar_dados, ranking_operadoras, top_por_volume,
-    operadoras_falidas, falidas_por_ano, CORES, IGR_MERCADO, ANO_PANDEMIA
+    operadoras_falidas, falidas_por_ano, CORES, IGR_MERCADO, ANO_PANDEMIA,
+    GRANULARIDADE_NOTA
 )
 
 st.set_page_config(
@@ -20,6 +21,7 @@ df_base = st.session_state.get("df", carregar_dados())
 
 st.markdown(eyebrow("OPERADORAS"), unsafe_allow_html=True)
 st.markdown("## Rankings, outliers e operadoras em situação crítica")
+st.caption(GRANULARIDADE_NOTA)
 st.markdown("---")
 
 # ==================================================================
@@ -71,7 +73,7 @@ with aba1:
     st.markdown("### Top 15 — maior IGR correto")
     st.markdown(
         f'<p style="font-size:13px; color:#7070a0; margin-bottom:16px;">'
-        f'Operadoras com mínimo de '
+        f'Período filtrado · operadoras com mínimo de '
         f'{min_benef:,.0f} beneficiários</p>'.replace(",", "."),
         unsafe_allow_html=True
     )

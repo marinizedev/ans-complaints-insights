@@ -8,7 +8,8 @@ import plotly.graph_objects as go
 from app.styles import inject_css, eyebrow, insight_box, footnote, apply_layout
 from app.data_loader import (
     carregar_dados, igr_por_ano, igr_porte_por_ano,
-    cobertura_por_ano, CORES, ANO_PANDEMIA
+    cobertura_por_ano, resumo_granularidade, CORES, ANO_PANDEMIA,
+    GRANULARIDADE_NOTA
 )
 
 st.set_page_config(page_title="Temporal · ANS Insights", page_icon="📈", layout="wide")
@@ -18,9 +19,19 @@ df       = st.session_state.get("df_filtrado", carregar_dados())
 ano_df   = igr_por_ano(df)
 porte_df = igr_porte_por_ano(df)
 cob_df   = cobertura_por_ano(df)
+gran_df  = resumo_granularidade(df)
 
 st.markdown(eyebrow("ANÁLISE TEMPORAL"), unsafe_allow_html=True)
 st.markdown("## Evolução das reclamações ao longo do tempo")
+st.caption(GRANULARIDADE_NOTA)
+obs_2026 = gran_df.loc[gran_df["competencia"] == 2026, "observacoes_mediana"]
+if not obs_2026.empty:
+    linha_2026 = gran_df.loc[gran_df["competencia"] == 2026].iloc[0]
+    st.caption(
+        f"2026: mediana de {obs_2026.iloc[0]:.0f} observações por grupo "
+        f"(faixa observada: {linha_2026['observacoes_min']:.0f}–"
+        f"{linha_2026['observacoes_max']:.0f}; mês não informado pela fonte)."
+    )
 st.markdown("---")
 
 # ==================================================================
@@ -175,7 +186,9 @@ st.markdown(
         "Em 2026, pela <strong>primeira vez na série histórica</strong>, "
         "o porte médio (IGR 35,823) superou o grande porte (IGR 31,859). "
         "⚠️ 2026 é ano parcial — esse comportamento requer acompanhamento "
-        "ao longo do ano para confirmação da tendência."
+        "ao longo do ano para confirmação da tendência. O mês não é informado "
+        "pela fonte; em vez de meses, a base contém cinco observações na "
+        "maioria dos grupos de 2026."
     ),
     unsafe_allow_html=True
 )

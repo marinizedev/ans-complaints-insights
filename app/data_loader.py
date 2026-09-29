@@ -36,6 +36,11 @@ ANOS_PARCIAIS = [2026]
 # Manter a escala em uma única constante evita divergências entre as páginas.
 IGR_MULTIPLICADOR = 100_000
 IGR_UNIDADE = "por 100.000 beneficiários"
+GRANULARIDADE_NOTA = (
+    "A fonte entrega COMPETENCIA apenas como ano; as múltiplas observações "
+    "por grupo são compatíveis com periodicidade mensal, mas o mês não é "
+    "informado explicitamente."
+)
 
 
 def calcular_igr(total_reclamacoes, total_beneficiarios):
@@ -148,6 +153,30 @@ def carregar_dados() -> pd.DataFrame:
     )
 
     return df
+
+
+@st.cache_data(show_spinner=False)
+def resumo_granularidade(df: pd.DataFrame) -> pd.DataFrame:
+    """Resume a quantidade de observações por grupo anual.
+
+    A fonte não informa o mês. Portanto, esta função mede observações por
+    grupo, sem inventar uma competência mensal ou afirmar quais meses estão
+    presentes.
+    """
+    chave = ["registro_ans", "cobertura", "competencia"]
+    grupos = df.groupby(chave, dropna=False).size().rename("observacoes")
+    return (
+        grupos.reset_index()
+        .groupby("competencia", as_index=False)
+        .agg(
+            grupos=("observacoes", "size"),
+            observacoes_total=("observacoes", "sum"),
+            observacoes_mediana=("observacoes", "median"),
+            observacoes_min=("observacoes", "min"),
+            observacoes_max=("observacoes", "max"),
+        )
+        .sort_values("competencia")
+    )
 
 
 # ==================================================================

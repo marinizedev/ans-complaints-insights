@@ -8,7 +8,8 @@ import plotly.graph_objects as go
 from app.styles import inject_css, eyebrow, insight_box, footnote, apply_layout
 from app.data_loader import (
     carregar_dados, igr_por_ano, igr_por_porte,
-    igr_por_cobertura, CORES, IGR_MERCADO, ANO_PANDEMIA
+    igr_por_cobertura, CORES, IGR_MERCADO,
+    ANO_PANDEMIA, IGR_UNIDADE, GRANULARIDADE_NOTA
 )
 
 st.set_page_config(
@@ -33,6 +34,7 @@ cob_df    = igr_por_cobertura(df)
 
 st.markdown(eyebrow("VISÃO GERAL"), unsafe_allow_html=True)
 st.markdown("## Panorama do período analisado")
+st.caption(GRANULARIDADE_NOTA)
 st.markdown("---")
 
 # ==================================================================
@@ -106,7 +108,11 @@ apply_layout(fig, height=340,
                          font=dict(size=12, color="#9090b8")))
 st.plotly_chart(fig, use_container_width=True)
 st.markdown(
-    footnote("⚠️ 2026 = ano parcial — barra com opacidade reduzida. Fonte: ANS."),
+    footnote(
+        "⚠️ 2026 = ano parcial — barra com opacidade reduzida. "
+        "A fonte não informa o mês; as observações são agregadas por ano. "
+        "Fonte: ANS."
+    ),
     unsafe_allow_html=True
 )
 
@@ -194,6 +200,9 @@ with col_d:
                  margin=dict(l=10, r=70, t=10, b=10))
     st.plotly_chart(fig_c, use_container_width=True)
     st.markdown(
-        footnote("Assistência médica: IGR 27× maior que odontológica."),
+        footnote(
+            f"Assistência médica: IGR 27× maior que odontológica. "
+            f"Unidade: {IGR_UNIDADE}."
+        ),
         unsafe_allow_html=True
     )

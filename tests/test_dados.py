@@ -124,3 +124,27 @@ def test_coluna_igr_da_base_confirma_escala_oficial(df_testes):
         rtol=0,
         atol=0.01,
     )
+
+
+def test_competencias_recebidas_sao_anuais_no_arquivo_atual(df_testes):
+    """Registra que a fonte analisada entrega competência com quatro dígitos."""
+    for coluna in ["competencia", "competencia_beneficiario"]:
+        valores = (
+            df_testes[coluna]
+            .dropna()
+            .astype(int)
+            .astype(str)
+        )
+        assert valores.str.len().eq(4).all()
+
+
+def test_base_tem_multiplas_observacoes_por_grupo_anual(df_testes):
+    """Não trata a periodicidade implícita como duplicação automática."""
+    grupos = (
+        df_testes
+        .groupby(["registro_ans", "cobertura", "competencia"])
+        .size()
+    )
+
+    assert (grupos > 1).any()
+    assert (grupos == 12).any()

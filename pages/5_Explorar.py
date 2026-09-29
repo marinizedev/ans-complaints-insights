@@ -6,7 +6,10 @@
 import streamlit as st
 import plotly.graph_objects as go
 from app.styles import inject_css, eyebrow, footnote, apply_layout
-from app.data_loader import carregar_dados, calcular_igr, CORES, IGR_MERCADO
+from app.data_loader import (
+    carregar_dados, calcular_igr, CORES, IGR_MERCADO,
+    IGR_UNIDADE, GRANULARIDADE_NOTA
+)
 
 st.set_page_config(
     page_title="Explorar · ANS Insights", page_icon="🎛️", layout="wide"
@@ -17,6 +20,7 @@ df_base = st.session_state.get("df", carregar_dados())
 
 st.markdown(eyebrow("EXPLORAÇÃO LIVRE"), unsafe_allow_html=True)
 st.markdown("## Faça suas próprias perguntas")
+st.caption(GRANULARIDADE_NOTA)
 st.markdown(
     '<p style="font-size:14px; color:#7070a0; margin-bottom:20px;">'
     'Filtre, combine e explore os dados sem restrições.</p>',
@@ -94,7 +98,7 @@ with col2:
     st.metric("BENEFICIÁRIOS",
               f"{total_benef:,.0f}".replace(",", "."))
 with col3:
-    st.metric("IGR DA SELEÇÃO", f"{igr_sel:.4f}")
+    st.metric("IGR DA SELEÇÃO", f"{igr_sel:.4f}", IGR_UNIDADE)
 with col4:
     st.metric("OPERADORAS",
               f"{ops_unicas:,}".replace(",", "."))

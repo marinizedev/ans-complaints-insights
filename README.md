@@ -1,4 +1,4 @@
----
+```yaml
 title: ANS Complaints Insights
 emoji: 🏥
 colorFrom: green
@@ -7,7 +7,7 @@ sdk: streamlit
 sdk_version: 1.45.1
 app_file: main.py
 pinned: false
----
+```
 
 <div align="center">
 
@@ -20,10 +20,10 @@ pinned: false
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.45-FF4B4B?logo=streamlit&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-2.2-150458?logo=pandas&logoColor=white)
 ![Plotly](https://img.shields.io/badge/Plotly-5.24-3F4F75?logo=plotly&logoColor=white)
-![HuggingFace](https://img.shields.io/badge/🤗_Hugging_Face-Space-FFD21E)
-![License](https://img.shields.io/badge/Licença-MIT-2dd4a0)
+![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97_Hugging_Face-Space-FFD21E)
+![License](https://img.shields.io/badge/Licen%C3%A7a-MIT-2dd4a0)
 
-**[🚀 Acessar o Dashboard ao Vivo](https://huggingface.co/spaces/marinizeeng/ans-complaints-insights)**
+[**🚀 Acessar o Dashboard ao Vivo**](https://huggingface.co/spaces/marinizeeng/ans-complaints-insights)
 
 </div>
 
@@ -48,14 +48,23 @@ O projeto percorre todo o ciclo analítico: da coleta e processamento dos dados 
 Além da construção do dashboard, o projeto contempla todas as etapas de um fluxo analítico completo:
 
 - entendimento da base de dados;
+
 - limpeza e padronização dos dados;
+
 - investigação metodológica;
+
 - análise exploratória (EDA);
+
 - validação de hipóteses;
+
 - descoberta de insights;
+
 - construção do Data Storytelling;
+
 - desenvolvimento de dashboard interativo;
+
 - testes automatizados;
+
 - integração e deploy contínuos (CI/CD).
 
 Durante o desenvolvimento foi identificada e corrigida uma inconsistência importante na forma de calcular o IGR médio, garantindo que todas as análises utilizassem a metodologia estatisticamente correta.
@@ -85,24 +94,31 @@ Durante o desenvolvimento foi identificada e corrigida uma inconsistência impor
 ## 🔍 Principais Descobertas
 
 ### 📌 A pandemia como ponto de inflexão estrutural
+
 Antes de 2020, o crescimento das reclamações era lento e irregular. A partir de 2020, a curva muda de inclinação e **não retorna ao ritmo anterior** — sugerindo que o sistema de saúde suplementar saiu estruturalmente fragilizado do período pandêmico.
 
 ### 📌 Grande porte concentra desproporcionalmente
+
 Operadoras de grande porte representam apenas **9,89%** dos registros na base, mas concentram **82,54%** de todas as reclamações — razão de concentração de **8,35×**.
 
 ### 📌 Tamanho da carteira não explica tudo
+
 A correlação entre quantidade de beneficiários e reclamações é moderada (**0,54**). Operadoras com carteiras semelhantes apresentam comportamentos completamente distintos — fatores operacionais e de qualidade de atendimento exercem papel relevante.
 
 ### 📌 Assistência médica vs odontológica
+
 O IGR da assistência médica é **27 vezes** maior que o da cobertura exclusivamente odontológica — proporção que se manteve estável ao longo de toda a série histórica.
 
 ### 📌 Prevent Senior — outlier entre operadoras ativas
+
 IGR de **1.321,33** — **65 vezes** acima do IGR de mercado (20,162). Única operadora ativa nesse patamar, com comportamento completamente distinto das demais grandes operadoras.
 
 ### 📌 Operadoras em falência continuam impactando beneficiários
+
 71 operadoras identificadas com indícios de falência ou liquidação. O padrão sugere que a deterioração do serviço começa **antes** da falência formal.
 
 ### 📌 Inversão histórica em 2026
+
 Pela primeira vez na série, o porte médio (IGR 35,823) superou o grande porte (IGR 31,859). Comportamento monitorado — 2026 é ano parcial.
 
 ---
@@ -124,12 +140,14 @@ Os valores anuais do IGR estavam completamente fora da realidade.
 A coluna `IGR` do dataset da ANS já contém o índice **calculado individualmente** para cada operadora. Calcular a média aritmética desse campo dá o mesmo peso a carteiras de tamanhos diferentes e não representa adequadamente o IGR agregado do mercado.
 
 **❌ Método incorreto — média simples:**
+
 ```python
 df.groupby("competencia")["igr"].mean()
 # Média descritiva entre operadoras, não o IGR agregado do mercado
 ```
 
 **✅ Método correto — adotado neste projeto:**
+
 ```python
 igr_correto = (
     df.groupby("competencia")
@@ -147,7 +165,7 @@ igr_correto["igr"] = (
 
 **Fórmula do IGR:** `IGR = (QTD_RECLAMACOES / QTD_BENEFICIARIOS) × 100.000`
 
-> **Revisão posterior:** a ponderação pela carteira foi mantida, mas a unidade oficial da ANS foi corrigida de “por 1.000” para “por 100.000 beneficiários”. A granularidade da base também está sendo investigada. Consulte a [nota metodológica da revisão](docs/revisao_metodologica_2026.md).
+> **Revisão posterior:** a ponderação pela carteira foi mantida, mas a unidade oficial da ANS foi corrigida de “por 1.000” para “por 100.000 beneficiários”. O dicionário da ANS descreve `COMPETENCIA` e `COMPETENCIA_BENEFICIARIO` como ano-mês, mas o arquivo efetivamente recebido contém apenas o ano. A base apresenta múltiplas observações aparentemente mensais, sem o mês explícito; não há evidência de que essa informação tenha sido removida pelo ETL. Consulte a [nota metodológica da revisão](docs/revisao_metodologica_2026.md).
 
 ---
 
@@ -171,8 +189,7 @@ ans-complaints-insights/
 │   ├── investigacao_inicial.md
 │   ├── insights_iniciais.md
 │   ├── hypotheses.md
-│   ├── perguntas_negocio.md
-│   └── revisao_metodologica_2026.md
+│   └── perguntas_negocio.md
 │
 ├── images/                       # Screenshots do dashboard
 │
@@ -241,7 +258,7 @@ O pipeline de CI executa os testes de regras de negócio automaticamente a cada 
 
 ---
 
-## 🔄 Integração e Deploy Contínuos (CI/CD)
+## 🔄 Integração e Deploy Contínuos (CI/CD )
 
 Este projeto utiliza um pipeline automatizado de CI/CD com GitHub Actions e Hugging Face Spaces.
 
@@ -250,8 +267,11 @@ Este projeto utiliza um pipeline automatizado de CI/CD com GitHub Actions e Hugg
 A cada push ou pull request:
 
 - configuração automática do ambiente Python 3.11;
+
 - instalação das dependências;
+
 - execução da suíte de testes com `pytest`;
+
 - validação das regras de negócio da aplicação.
 
 ### Continuous Deployment (CD)
@@ -269,7 +289,7 @@ Durante o pipeline, o GitHub Actions realiza normalmente o checkout do repositó
 ## 📊 Fonte dos Dados
 
 | Item | Detalhe |
-|---|---|
+| --- | --- |
 | **Origem** | Portal de Dados Abertos da ANS |
 | **Dataset** | Índice Geral de Reclamações (IGR) |
 | **Período analisado** | 2015–2026* |
@@ -277,14 +297,14 @@ Durante o pipeline, o GitHub Actions realiza normalmente o checkout do repositó
 | **Operadoras** | 1.411 |
 | **Cobertura** | Assistência médica e odontológica |
 
-\* O ano de 2026 contém dados parciais.
+* O ano de 2026 contém dados parciais.
 
 ---
 
 ## 🛠️ Stack Tecnológica
 
 | Camada | Tecnologia |
-|---|---|
+| --- | --- |
 | Linguagem | Python 3.11 |
 | Processamento de Dados | Pandas 2.2 |
 | Dashboard | Streamlit 1.45 |
@@ -309,6 +329,6 @@ Este projeto foi desenvolvido com foco na aplicação de boas práticas de Engen
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Marinize_Santana-0077B5?logo=linkedin&logoColor=white)](https://linkedin.com/in/marinize-santana-47bb2b372)
 [![GitHub](https://img.shields.io/badge/GitHub-marinizedev-181717?logo=github&logoColor=white)](https://github.com/marinizedev)
-[![Hugging Face](https://img.shields.io/badge/🤗_Space-ans--complaints--insights-FFD21E)](https://huggingface.co/spaces/marinizeeng/ans-complaints-insights)
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97_Space-ans--complaints--insights-FFD21E)](https://huggingface.co/spaces/marinizeeng/ans-complaints-insights)
 
 </div>

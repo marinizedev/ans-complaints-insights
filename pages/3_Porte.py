@@ -10,7 +10,7 @@ from app.data_loader import (
     carregar_dados,
     igr_por_porte,
     igr_porte_por_ano,
-    CORES
+    CORES, GRANULARIDADE_NOTA
 )
 
 st.set_page_config(
@@ -35,6 +35,7 @@ tempo_df = igr_porte_por_ano(df)
 
 st.markdown(eyebrow("PORTE DAS OPERADORAS"), unsafe_allow_html=True)
 st.markdown("## Grande, médio e pequeno — quem reclama mais?")
+st.caption(GRANULARIDADE_NOTA)
 st.markdown("---")
 
 # ==================================================================

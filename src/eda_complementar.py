@@ -33,7 +33,7 @@
 #   2. IGR por porte (recalculado)
 #   3. IGR por cobertura (recalculado)
 #   4. Evolução das coberturas ao longo do tempo
-#   5. Tratamento e sinalização do ano parcial (2026)
+#   5. Tratamento e sinalização do ano parcial (2026), sem mês explícito na fonte
 #   6. Participação do porte: registros vs reclamações
 #   7. Dispersão do IGR por operadora (identificação de outliers)
 #   8. Comparação IGR: grandes operadoras vs mercado
