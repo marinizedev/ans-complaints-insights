@@ -3,9 +3,8 @@ title: ANS Complaints Insights
 emoji: 🏥
 colorFrom: green
 colorTo: green
-sdk: streamlit
-sdk_version: 1.45.1
-app_file: main.py
+sdk: docker
+app_port: 7860
 pinned: false
 ---
 
