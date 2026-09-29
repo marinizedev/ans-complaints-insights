@@ -19,6 +19,7 @@ pinned: false
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.45-FF4B4B?logo=streamlit&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-2.2-150458?logo=pandas&logoColor=white)
 ![Plotly](https://img.shields.io/badge/Plotly-5.24-3F4F75?logo=plotly&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Container-2496ED?logo=docker&logoColor=white )
 ![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97_Hugging_Face-Space-FFD21E)
 ![License](https://img.shields.io/badge/Licen%C3%A7a-MIT-2dd4a0)
 
