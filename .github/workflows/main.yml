@@ -56,6 +56,26 @@ jobs:
 
     - name: Fazer Deploy para o Hugging Face Spaces via Git Push
       run: |
+        set -e
+
         git remote remove space 2>/dev/null || true
         git remote add space https://marinizeeng:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/marinizeeng/ans-complaints-insights
-        git push --force space HEAD:main
+
+        git lfs install
+
+        # Cria uma árvore sem o histórico antigo do GitHub.
+        git checkout --orphan hf-deploy
+
+        # Remove o índice herdado e mantém os arquivos atuais no diretório.
+        git rm -rf --cached . 2>/dev/null || true
+
+        # Re adiciona a árvore atual respeitando .gitattributes e Git LFS.
+        git add -A
+
+        git config user.email "actions@github.com"
+        git config user.name "GitHub Actions"
+        git commit -m "deploy: ${GITHUB_SHA}"
+
+        # Publica somente a árvore limpa no Hugging Face.
+        git push --force space hf-deploy:main
+
